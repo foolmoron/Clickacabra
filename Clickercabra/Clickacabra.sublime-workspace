@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"EXP",
+				"EXP_BASE	Int"
+			],
+			[
+				"BOR",
+				"BORDER_SHADOW	Int"
+			],
+			[
+				"BORD",
+				"BORDER_OUTLINE	Int"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"pr",
+				"anyPressed(...)	Bool"
+			],
+			[
+				"decim",
+				"decimalString	String"
+			],
+			[
+				"ela",
+				"elapsedTime	Float"
+			],
+			[
+				"el",
+				"elapsedLoops	Int"
+			],
+			[
+				"test",
+				"testText"
+			],
+			[
+				"coef",
+				"coefficients"
+			],
+			[
+				"sprite",
+				"FlxSprite	flixel"
+			],
+			[
+				"border",
+				"borderSize"
+			],
+			[
+				"sw",
+				"switchState(...)	Void"
+			],
+			[
 				"flx",
 				"FlxMath	class"
 			],
@@ -235,8 +287,25 @@
 			"file": "source/Main.hx",
 			"settings":
 			{
-				"buffer_size": 1972,
+				"buffer_size": 1955,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "source/PlayState.hx",
+			"settings":
+			{
+				"buffer_size": 1784,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "source/BigNum.hx",
+			"settings":
+			{
+				"buffer_size": 4853,
+				"line_ending": "Windows",
+				"name": "package;"
 			}
 		}
 	],
@@ -263,10 +332,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 437.0,
-		"last_filter": "",
+		"height": 490.0,
+		"last_filter": "package",
 		"selected_items":
 		[
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
 			[
 				"haxe",
 				"Haxe: Run build"
@@ -300,13 +373,14 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 549.0
+		"width": 527.0
 	},
 	"console":
 	{
 		"height": 162.0,
 		"history":
 		[
+			"import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
 			"print('hello')",
 			"print(hello)",
 			"print \"hello\",",
@@ -337,6 +411,9 @@
 	],
 	"file_history":
 	[
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/Project.xml",
+		"/C/HaxeToolkit/haxe/lib/flixel/3,3,8/flixel/FlxG.hx",
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/source/MenuState.hx",
 		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/PlayState.hx",
 		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/Main.hx",
 		"/C/Users/foolmoron/Desktop/milkytracker-0.90.86-winnt/milkytracker.cfg",
@@ -461,10 +538,7 @@
 		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
 		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
 		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Program Files/Sublime Text 3/Packages/JavaScript.sublime-package",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Extra Themes/Chrome_DevTools.tmTheme",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Chrome_DevTools.tmTheme",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Notepad-Plus-Plus.tmTheme"
+		"/C/Program Files/Sublime Text 3/Packages/JavaScript.sublime-package"
 	],
 	"find":
 	{
@@ -483,6 +557,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"val",
+			"val:BigNum",
+			"..MAX_EXP)",
+			"...MAX_E",
+			"negative",
+			"i ",
+			"i]",
+			"i",
+			":Num",
+			"Num",
+			"int",
+			"Int",
+			"addInt",
+			"textText",
+			"this",
+			"other",
+			"@:op(A - B) ",
+			"B) ",
+			"this",
+			"*",
+			"add",
+			"20",
+			"vertLine",
+			"x ",
+			"border",
+			"player",
+			"switchState",
 			"haxe",
 			"Howl",
 			"buffer1sPlaced",
@@ -583,34 +684,7 @@
 			"Contact",
 			"ContactsCon",
 			"contact",
-			"Contract",
-			"contactscontrl",
-			"view emails",
-			"gatheredtasks",
-			"id=\"settin",
-			"ide=\"settin",
-			"evensp",
-			"\"hweaver@evenspring.com\"",
-			"\"4N9-_NWfYvYxpesMVpne\"",
-			"evensp",
-			"daywon-api-staging",
-			"daywon",
-			"srrn",
-			"evensp",
-			"authToken",
-			"class=\"searc",
-			"tags.png",
-			"tag.png",
-			"events.png",
-			"event.png",
-			"sort",
-			"gathere",
-			"today",
-			"\"Today\"",
-			"serialize:",
-			"refetch",
-			"accordiona",
-			"status"
+			"Contract"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -628,7 +702,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -637,15 +711,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1972,
+						"buffer_size": 1955,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1206,
-								1206
+								1071,
+								1071
 							]
 						],
 						"settings":
@@ -655,10 +729,72 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 540.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/PlayState.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1722,
+								1722
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1030.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "source/BigNum.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3019,
+								3020
+							]
+						],
+						"settings":
+						{
+							"auto_name": "package;",
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1647.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -716,6 +852,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"flxg.",
+				"Flixel\\flixel\\FlxG.hx"
+			],
 			[
 				"audioma",
 				"sws\\entities\\AudioManager.js"
