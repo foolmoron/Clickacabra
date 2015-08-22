@@ -22,13 +22,13 @@ class PlayState extends FlxState
 	public static inline var SKY_LERP_STEPS = 100;
 	var skyBackground:FlxSprite;
 	var skyColors:Array<Int> = [
-		//sunrise
+		// sunrise
 		0xFFFFBB00, 
-		//day
+		// day
 		0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF, 0xFF00B8FF,
-		//dusk
+		// dusk
 		0xFF6600FF,
-		//night
+		// night
 		0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80,
 	];
 
@@ -39,18 +39,18 @@ class PlayState extends FlxState
 	{
 		FlxG.autoPause = false; // it's an idler, so let it always play
 
-		//make background
+		// make background
 		{
 			background = new FlxSprite(0, 0);
 			background.loadGraphic("assets/images/bg.png");
 			add(background);
 		}
-		//make sky
+		// make sky
 		{
 			skyBackground = new FlxSprite(0, 0);
 			add(skyBackground);
 		}
-		// grid
+		// debug grid
 		{
 			var cellSize = 10;
 			for (x in 0...Std.int(FlxG.width/cellSize)) {
@@ -64,7 +64,7 @@ class PlayState extends FlxState
 				add(horizLine);
 			}
 		}
-		// text
+		// debug text
 		{
 			this.testText = new FlxText(30, 150, 0, null, 16);
 			this.testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
@@ -82,13 +82,13 @@ class PlayState extends FlxState
 
 	override public function update():Void
 	{
-		time += FlxG.elapsed;
+		time += FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
 		val *= FlxG.keys.pressed.T ? 100 : 1;
 		var sign = FlxG.keys.pressed.F ? -1 : 1;
 		b = b.addNum(val * sign);
-		this.testText.text = b.toString();
+		this.testText.text = "t=" + Std.int(time) + " b=" + b.toString();
 
 		// do sky color interp
 		{
