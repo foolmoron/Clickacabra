@@ -5,13 +5,14 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
-import flixel.util.FlxGradient;
+import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
 import flixel.util.FlxMath;
 import flixel.util.FlxColorUtil;
 
 class PlayState extends FlxState
 {
+	var save:FlxSave = new FlxSave();
 	var time:Float = 0.0;
 
 	var background:FlxSprite;
@@ -39,6 +40,21 @@ class PlayState extends FlxState
 	{
 		FlxG.autoPause = false; // it's an idler, so let it always play
 
+		// set up save data
+		{
+			save.bind("clickacabra1");
+			save.data.L = Std.is(save.data.L, Int) ? save.data.L : 0; // live people
+			save.data.D = Std.is(save.data.D, Int) ? save.data.D : 0; // dead people
+			save.data.F = Std.is(save.data.F, Int) ? save.data.F : 0; // flesh
+			save.data.Z = Std.is(save.data.Z, Int) ? save.data.Z : 0; // diamonds
+			save.data.C = Std.is(save.data.C, Int) ? save.data.C : 0; // chupacabras
+			save.data.W = Std.is(save.data.W, Int) ? save.data.W : 0; // daywalkers
+			save.data.M = Std.is(save.data.M, Int) ? save.data.M : 0; // mothers
+			save.data.N = Std.is(save.data.N, Int) ? save.data.N : 0; // nests
+			save.data.G = Std.is(save.data.G, Int) ? save.data.G : 0; // goats
+			save.data.P = Std.is(save.data.P, Int) ? save.data.P : 0; // puppies
+			save.flush();
+		}
 		// make background
 		{
 			background = new FlxSprite(0, 0);
@@ -66,10 +82,10 @@ class PlayState extends FlxState
 		}
 		// debug text
 		{
-			this.testText = new FlxText(30, 150, 0, null, 16);
-			this.testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
-			this.testText.color = 0xFFFFFFFF;
-			add(this.testText);
+			testText = new FlxText(30, 150, 0, null, 16);
+			testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
+			testText.color = 0xFFFFFFFF;
+			add(testText);
 		}
 
 		super.create();
@@ -88,17 +104,17 @@ class PlayState extends FlxState
 		val *= FlxG.keys.pressed.T ? 100 : 1;
 		var sign = FlxG.keys.pressed.F ? -1 : 1;
 		b = b.addNum(val * sign);
-		this.testText.text = "t=" + Std.int(time) + " b=" + b.toString();
+		testText.text = "t=" + Std.int(time) + " b=" + b.toString();
 
 		// do sky color interp
 		{
-			var inDayTime = this.time % (DAY_LENGTH + NIGHT_LENGTH);
+			var inDayTime = time % (DAY_LENGTH + NIGHT_LENGTH);
 			var inDayPerc = inDayTime / (DAY_LENGTH + NIGHT_LENGTH);
-			var colorIndex = Std.int(this.skyColors.length * inDayPerc);
-			var interColorLerp = (this.skyColors.length * inDayPerc) - colorIndex;
+			var colorIndex = Std.int(skyColors.length * inDayPerc);
+			var interColorLerp = (skyColors.length * inDayPerc) - colorIndex;
 
-			var firstColor = this.skyColors[colorIndex];
-			var secondColor = this.skyColors[(colorIndex + 1) % this.skyColors.length];
+			var firstColor = skyColors[colorIndex];
+			var secondColor = skyColors[(colorIndex + 1) % skyColors.length];
 			skyBackground.makeGraphic(FlxG.width, SKY_HEIGHT, FlxColorUtil.interpolateColor(firstColor, secondColor, SKY_LERP_STEPS, Std.int(interColorLerp*SKY_LERP_STEPS)));
 		}
 
