@@ -33,6 +33,17 @@ class PlayState extends FlxState
 		0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80,
 	];
 
+	var lText:DataText<Int>;
+	var dText:DataText<Int>;
+	var fText:DataText<Int>;
+	var zText:DataText<Int>;
+	var cText:DataText<Int>;
+	var wText:DataText<Int>;
+	var mText:DataText<Int>;
+	var nText:DataText<Int>;
+	var gText:DataText<Int>;
+	var pText:DataText<Int>;
+
 	var testText:FlxText;
 	var b:BigNum = new BigNum();
 
@@ -66,6 +77,27 @@ class PlayState extends FlxState
 			skyBackground = new FlxSprite(0, 0);
 			add(skyBackground);
 		}
+		// set up texts
+		{
+			lText = new DataText<Int>(save.data, "L", function(val) return "L=" + val);
+			dText = new DataText<Int>(save.data, "D", function(val) return "D=" + val);
+			fText = new DataText<Int>(save.data, "F", function(val) return "F=" + val);
+			zText = new DataText<Int>(save.data, "Z", function(val) return "Z=" + val);
+			cText = new DataText<Int>(save.data, "C", function(val) return "C=" + val);
+			wText = new DataText<Int>(save.data, "W", function(val) return "W=" + val);
+			mText = new DataText<Int>(save.data, "M", function(val) return "M=" + val);
+			nText = new DataText<Int>(save.data, "N", function(val) return "N=" + val);
+			gText = new DataText<Int>(save.data, "G", function(val) return "G=" + val);
+			pText = new DataText<Int>(save.data, "P", function(val) return "P=" + val);
+			var texts = [lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
+			for (i in 0...texts.length) {
+				texts[i].x = 15;
+				texts[i].y = i * 15 + 80;
+				texts[i].setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 1, 1);
+				texts[i].color = 0xFFFFFFFF;
+				add(texts[i]);
+			}
+		}
 		// debug grid
 		{
 			var cellSize = 10;
@@ -82,7 +114,7 @@ class PlayState extends FlxState
 		}
 		// debug text
 		{
-			testText = new FlxText(30, 150, 0, null, 16);
+			testText = new FlxText(150, 150, 0, null, 16);
 			testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
 			testText.color = 0xFFFFFFFF;
 			add(testText);
