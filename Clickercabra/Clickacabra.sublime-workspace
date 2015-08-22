@@ -1,0 +1,897 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"flx",
+				"FlxMath	class"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"cli",
+				"clientY"
+			],
+			[
+				"touche",
+				"touches"
+			],
+			[
+				"add",
+				"addComponent"
+			],
+			[
+				"old",
+				"oldMousePos"
+			],
+			[
+				"new",
+				"newMousePos"
+			],
+			[
+				"mouse",
+				"mousePosWorld"
+			],
+			[
+				"camera",
+				"cameraWidth"
+			],
+			[
+				"curr",
+				"currentCameraX"
+			],
+			[
+				"scroll",
+				"scrollPointX"
+			],
+			[
+				"tex",
+				"texture"
+			],
+			[
+				"selec",
+				"unSelectItem"
+			],
+			[
+				"textu",
+				"textureObjects"
+			],
+			[
+				"_item",
+				"_itemIcon"
+			],
+			[
+				"info",
+				"_infoButton"
+			],
+			[
+				"Ige",
+				"IgeUiEntity"
+			],
+			[
+				"_up",
+				"_upgradeToEco"
+			],
+			[
+				"_upd",
+				"_upgradeToEco"
+			],
+			[
+				"save",
+				"saveData"
+			],
+			[
+				"max",
+				"maxScale"
+			],
+			[
+				"min",
+				"minScale"
+			],
+			[
+				"_ini",
+				"_initialScale"
+			],
+			[
+				"del",
+				"deltaDistance"
+			],
+			[
+				"dlet",
+				"deltaDistance"
+			],
+			[
+				"_mou",
+				"_mouseDown"
+			],
+			[
+				"_back",
+				"_backgroundPatternFill"
+			],
+			[
+				"RIV",
+				"RIVER_ROTATION"
+			],
+			[
+				"ghosti",
+				"ghostItemToPlace"
+			],
+			[
+				"extra",
+				"extraContent"
+			],
+			[
+				"mode",
+				"modelJSON"
+			],
+			[
+				"contacts",
+				"contactsController"
+			],
+			[
+				"gate",
+				"gatheredContacts"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"birth",
+				"birthdayProperty"
+			],
+			[
+				"birt",
+				"birthdayProperty"
+			],
+			[
+				"second",
+				"secondarySort"
+			],
+			[
+				"loca",
+				"localStorageClearInterval"
+			],
+			[
+				"sear",
+				"searchTypeaheadOptions"
+			],
+			[
+				"type",
+				"typeaheadOptions"
+			],
+			[
+				"search",
+				"searchAll"
+			],
+			[
+				"reloa",
+				"reloadedEvent"
+			],
+			[
+				"conta",
+				"Contacts"
+			],
+			[
+				"exte",
+				"extend"
+			],
+			[
+				"extended",
+				"extended_properties"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"proper",
+				"properties"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"parse",
+				"parseJSON"
+			],
+			[
+				"tags",
+				"tagsDatasource"
+			],
+			[
+				"displa",
+				"displayText"
+			],
+			[
+				"object",
+				"objectID"
+			],
+			[
+				"date",
+				"dateString"
+			],
+			[
+				"start",
+				"start_datetime"
+			],
+			[
+				"_block",
+				"_blockStreak"
+			],
+			[
+				"_bloc",
+				"_blockStreak"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "source/Main.hx",
+			"settings":
+			{
+				"buffer_size": 1972,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "HaxeFlashDebug",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"HaxeFlashDebug",
+					""
+				],
+				[
+					"Packages/Haxe/Support/Hxml.sublime-build",
+					""
+				]
+			],
+			[
+				"HaxeFlashDebug",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 437.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"haxe",
+				"Haxe: Run build"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 549.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"print('hello')",
+			"print(hello)",
+			"print \"hello\",",
+			"print \"hello\"",
+			"print \"hello\";",
+			"print hello",
+			"print",
+			"cd C",
+			"cd C:/",
+			"dir",
+			"ls",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra",
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/source"
+	],
+	"file_history":
+	[
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/PlayState.hx",
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/Clickercabra/Main.hx",
+		"/C/Users/foolmoron/Desktop/milkytracker-0.90.86-winnt/milkytracker.cfg",
+		"/C/Users/foolmoron/Documents/Projects/ld33/HaxeFlixel Tutorial/HaxeFlixel Tutorial.sublime-project",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/test.sublime-build",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/Haxe.cache/Haxe.ShellVars.tmPreferences",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/HaxeFlixel Tutorial.sublime-project",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/HaxeFlixel Tutorial.sublime-workspace",
+		"/C/HaxeToolkit/haxe/std/flash/display/Sprite.hx",
+		"/C/HaxeToolkit/haxe/lib/flixel/3,3,8/flixel/FlxState.hx",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/source/Main.hx",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/source/PlayState.hx",
+		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/Project.xml",
+		"/C/HaxeToolkit/haxe/lib/flixel/3,3,8/flixel/FlxGame.hx",
+		"/C/wamp/www/GAtest/index.html",
+		"/C/wamp/www/SWS/sws/entities/Tiles/AnimalWaste.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/RiverBuffers/RiverBuffer1.js",
+		"/C/wamp/www/SWS/sws/entities/ChallengesPanel.js",
+		"/C/wamp/www/SWS/sws/audio/BGMusic.mp3",
+		"/C/wamp/www/SWS/sws/index.php",
+		"/C/wamp/www/SWS/sws/client.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeEntity.js",
+		"/C/wamp/www/SWS/sws/facebook.js",
+		"/C/wamp/www/SWSfb/index.php",
+		"/C/wamp/www/SWS/sws/entities/Tiles/Fertilizer.js",
+		"/C/wamp/www/SWS/sws/components/PinchZoomComponent.js",
+		"/C/wamp/www/SWS/sws/entities/PopupMessage.js",
+		"/C/wamp/www/SWS/sws/entities/ChallengeManager.js",
+		"/C/wamp/www/SWS/sws/entities/ChallengeLogic.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeCamera.js",
+		"/C/wamp/www/fool/js/content.js",
+		"/C/wamp/www/fool/css/main.css",
+		"/C/wamp/www/fool/index.html",
+		"/C/wamp/www/SWS/sws/entities/PopupMessages/ConfirmationPopups/ChallengePopup.js",
+		"/C/wamp/www/SWS/SkylizeDeploy/index.html",
+		"/C/wamp/www/SWS/SkylizeDeploy/deploy/index.html",
+		"/C/wamp/www/fool/js/classes.js",
+		"/C/Users/foolmoron/Documents/Projects/ggj14/build/tina/index.html",
+		"/C/wamp/www/fool/js/main.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/WinklebottomStatue.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/Mower.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/InventoryOnlyItems/Wrench.js",
+		"/C/wamp/www/SWS/sws/entities/InventoryBar.js",
+		"/C/wamp/www/SWS/sws/components/LimitZoomPanComponent.js",
+		"/C/wamp/www/SWS/sws/components/ScrollZoomComponent.js",
+		"/C/wamp/www/SWS/Fool's Camera Stuff/ClientConfig.js",
+		"/C/wamp/www/SWS/sws/components/ScaleToPointComponent.js",
+		"/C/wamp/www/SWS/Fool's Camera Stuff/client.js",
+		"/C/wamp/www/SWS/ige/engine/components/IgeMousePanComponent.js",
+		"/C/wamp/www/SWS/ige/engine/components/IgeInputComponent.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeViewport.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeInterval.js",
+		"/C/wamp/www/SWS/ige/engine/components/network/IgeNetworkClient.js",
+		"/C/wamp/www/SWS/sws/components/DisableHighlightComponent.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/InventoryOnlyItems/Mulch.js",
+		"/C/wamp/www/SWS/sws/components/WaterableComponent.js",
+		"/C/wamp/www/SWS/sws/entities/StorePanel.js",
+		"/C/wamp/www/SWS/ige/engine/assets/IgeFontSmartTexture.js",
+		"/C/wamp/www/SWS/sws/audio/SWSsounds.mp3",
+		"/C/wamp/www/SWS/ige/engine/filters/invert.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/Litter.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/InventoryOnlyItems/EcoFertilizer.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/InventoryOnlyItems/Glove.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/InventoryOnlyItems/Scooper.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/Tree.js",
+		"/C/wamp/www/SWS/ige/engine/components/three/EffectComposer.js",
+		"/C/wamp/www/SWS/ige/engine/filters/emboss.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/MushroomStatue.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeFontEntity.js",
+		"/C/wamp/www/SWS/sws/entities/Tile.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/Lamp.js",
+		"/C/wamp/www/SWS/ige/engine/filters/colorOverlay.js",
+		"/C/wamp/www/SWS/sws/entities/AudioManager.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeUiElement.js",
+		"/C/wamp/www/SWS/sws/load.js",
+		"/C/wamp/www/fool/CanvasPixels/js/pixels.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeEngine.js",
+		"/C/wamp/www/SWS/ige/engine/components/IgeGamePadComponent.js",
+		"/C/wamp/www/SWS/sws/index.js",
+		"/C/wamp/www/SWS/sws/entities/Meter.js",
+		"/C/wamp/www/SWS/sws/components/TileInfoComponent.js",
+		"/C/wamp/www/SWS/sws/entities/TileGrid.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/RiverBuffer.js",
+		"/C/wamp/www/SWS/sws/entities/River.js",
+		"/C/Users/foolmoron/Documents/Projects/ggj14/build/PrincessTina.html",
+		"/C/wamp/www/SWS/ige/engine/core/IgeUiEntity.js",
+		"/C/wamp/www/SWS/ige/engine/core/IgeTileMap2d.js",
+		"/C/wamp/www/SWS/Skylize/entities/Grid.coffee",
+		"/C/wamp/www/SWS/Skylize/js/entities/Grid.js",
+		"/C/wamp/www/benefinder/apps/static/templates/wizard.html",
+		"/C/Users/foolmoron/Desktop/SWSfb/SWSfb/index.php",
+		"/C/wamp/www/SWSfb/game.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/RiverBuffers/RiverBuffer3.js",
+		"/C/wamp/www/SWS/sws/entities/Tiles/RiverBuffers/RiverBuffer2.js",
+		"/C/Users/foolmoron/Desktop/PrincessTinaGameOnly.html",
+		"/C/wamp/www/fool/CanvasPixels/css/pixels.css",
+		"/C/Users/foolmoron/Desktop/sample_contact.json",
+		"/C/Users/foolmoron/Desktop/sample_contact2.json",
+		"/C/wamp/www/DayWon/app/scripts/libs/ember-data.js",
+		"/C/wamp/www/DayWon/app/scripts/libs/jquery-1.10.2.js",
+		"/C/wamp/www/DayWon/app/scripts/events.js",
+		"/C/Users/foolmoron/AppData/Local/Google/Chrome/User Data/Default/Extensions/aonjhmdcgbgikgjapjckfkefpphjpgma/1.1.3_0/measureIt.js",
+		"/C/wamp/www/DayWon/app/index.html",
+		"/C/Users/foolmoron/AppData/Local/Temp/Rar$DIa0.129/HTML.tmLanguage",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/bh_core.sublime-settings",
+		"/C/wamp/www/SWS/FlappyPuzzle/client.js",
+		"/C/wamp/www/DayWon/app/scripts/app.js",
+		"/C/wamp/www/SWS/FlappyPuzzle/entities/Block.js",
+		"/C/wamp/www/SWS/FlappyPuzzle/deploy/index.html",
+		"/C/wamp/www/SWS/FlappyPuzzle/load.js",
+		"/C/wamp/www/SWS/FlappyPuzzle/entities/BlockStream.js",
+		"/C/wamp/www/SWS/FlappyPuzzle/index.html",
+		"/C/wamp/www/SWS/FlappyDeploy/index.html",
+		"/C/wamp/www/SWS/FlappyPuzzle/buildClientConfig.py",
+		"/C/wamp/www/SWS/FlappyPuzzle/ClientConfig.js",
+		"/C/wamp/www/SWS/FlappyPuzzle/LICENSE",
+		"/C/Program Files/Sublime Text 3/Packages/JavaScript/JavaScript.tmLanguage",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Program Files/Sublime Text 3/Packages/JavaScript.sublime-package",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Extra Themes/Chrome_DevTools.tmTheme",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Chrome_DevTools.tmTheme",
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Notepad-Plus-Plus.tmTheme"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 120.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"haxe",
+			"Howl",
+			"buffer1sPlaced",
+			"\"River Buffer Level 1 Installed\"",
+			"load:",
+			"initface",
+			"tileSetArray",
+			"textures",
+			"textures/",
+			"textures",
+			"house",
+			"none",
+			"location",
+			"window.open",
+			"TouchEvent",
+			"h3",
+			"</p>",
+			"<p>",
+			"\"",
+			"newScrollScale",
+			"SCROLL_SCALE_MIN",
+			"SCROLL_SCALE_MAX",
+			"SCROLL_SCALE_STEP",
+			"pointX",
+			"_mousePos",
+			"this._mousePos",
+			"_worldMatrix",
+			"localToWorldPoint",
+			"mousePosWorld",
+			"_processTriggerHitTests",
+			"_mouseInTrigger",
+			"_handleMouseDown",
+			"_mouseDown",
+			"mousedown",
+			"countText",
+			"info",
+			"unSelectItem",
+			"CURRENT_ITEM_BUTTON_SIZE",
+			"0",
+			"ITEM_CELL_WIDTH",
+			"border",
+			"unMount()",
+			"currentlySelectedItem",
+			"ITEMS_PER_PAGE",
+			"upgradedMowers",
+			"\"",
+			"scooper",
+			"Scooper",
+			"impervious",
+			"oldTouch0",
+			"touch1",
+			"oldTouch1",
+			"viewport",
+			"_resizeEvent",
+			"Squared",
+			"2",
+			"1",
+			"old",
+			"X",
+			"0",
+			"_mouseStateDown",
+			"_handleMouseDown",
+			"_mouseInTrigger",
+			"handleMouseIn",
+			"handlemousein",
+			"_mousesDown",
+			"_mouseStateDown",
+			"_mouseDow",
+			"canvasMouseMoveHandler",
+			"mouseDown",
+			"event",
+			"mousepan",
+			"mousePan",
+			"IgeMousePanComponent",
+			"emit",
+			"confirmEnrollmentModal",
+			"inputmoda",
+			"#inputmoda",
+			".modal",
+			"modal",
+			"data-toggle=\"modal\"",
+			"model",
+			"tojson",
+			"_backgroundPatternFill",
+			"backgroundpatternfill",
+			"_backgroundPatternFill",
+			"{\n",
+			"evt.",
+			"y",
+			"River(",
+			"soil test",
+			"this.OFFSET_Y",
+			"ITEM_OFFSETY",
+			"challengespanel",
+			"tiletomove",
+			"tileToMove",
+			"orphans",
+			"Contact",
+			"ContactsCon",
+			"contact",
+			"Contract",
+			"contactscontrl",
+			"view emails",
+			"gatheredtasks",
+			"id=\"settin",
+			"ide=\"settin",
+			"evensp",
+			"\"hweaver@evenspring.com\"",
+			"\"4N9-_NWfYvYxpesMVpne\"",
+			"evensp",
+			"daywon-api-staging",
+			"daywon",
+			"srrn",
+			"evensp",
+			"authToken",
+			"class=\"searc",
+			"tags.png",
+			"tag.png",
+			"events.png",
+			"event.png",
+			"sort",
+			"gathere",
+			"today",
+			"\"Today\"",
+			"serialize:",
+			"refetch",
+			"accordiona",
+			"status"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "source/Main.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1972,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1206,
+								1206
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 130.0
+	},
+	"output.find_results":
+	{
+		"height": 130.0
+	},
+	"pinned_build_system": "",
+	"project": "Clickacabra.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"audioma",
+				"sws\\entities\\AudioManager.js"
+			],
+			[
+				"buffer",
+				"sws\\entities\\Tiles\\RiverBuffers\\RiverBuffer1.js"
+			],
+			[
+				"challenglo",
+				"sws\\entities\\ChallengeLogic.js"
+			],
+			[
+				"invento",
+				"sws\\entities\\InventoryBar.js"
+			],
+			[
+				"face",
+				"sws\\facebook.js"
+			],
+			[
+				"house",
+				"sws\\entities\\Tiles\\House.js"
+			],
+			[
+				"pinch",
+				"sws\\components\\PinchZoomComponent.js"
+			],
+			[
+				"chale",
+				"sws\\entities\\PopupMessages\\ConfirmationPopups\\ChallengePopup.js"
+			],
+			[
+				"logic",
+				"sws\\entities\\ChallengeLogic.js"
+			],
+			[
+				"igeinput",
+				"engine\\components\\IgeInputComponent.js"
+			],
+			[
+				"igeview",
+				"engine\\core\\IgeViewport.js"
+			],
+			[
+				"igeent",
+				"engine\\core\\IgeEntity.js"
+			],
+			[
+				"limit",
+				"sws\\components\\LimitZoomPanComponent.js"
+			],
+			[
+				"mousepan",
+				"engine\\components\\IgeMousePanComponent.js"
+			],
+			[
+				"mower",
+				"sws\\entities\\Tiles\\Mower.js"
+			],
+			[
+				"wrench",
+				"sws\\entities\\Tiles\\InventoryOnlyItems\\Wrench.js"
+			],
+			[
+				"winkle",
+				"sws\\entities\\Tiles\\WinklebottomStatue.js"
+			],
+			[
+				"pop",
+				"sws\\entities\\PopupMessage.js"
+			],
+			[
+				"store",
+				"sws\\entities\\StorePanel.js"
+			],
+			[
+				"invent",
+				"sws\\entities\\InventoryBar.js"
+			],
+			[
+				"ecof",
+				"sws\\entities\\Tiles\\InventoryOnlyItems\\EcoFertilizer.js"
+			],
+			[
+				"mulch",
+				"sws\\entities\\Tiles\\InventoryOnlyItems\\Mulch.js"
+			],
+			[
+				"ferti",
+				"sws\\entities\\Tiles\\Fertilizer.js"
+			],
+			[
+				"challengepop",
+				"sws\\entities\\PopupMessages\\ConfirmationPopups\\ChallengePopup.js"
+			],
+			[
+				"challe",
+				"sws\\entities\\ChallengesPanel.js"
+			],
+			[
+				"popup",
+				"sws\\entities\\PopupMessage.js"
+			],
+			[
+				"challenge",
+				"sws\\entities\\ChallengeLogic.js"
+			],
+			[
+				"tree",
+				"sws\\entities\\Tiles\\Tree.js"
+			],
+			[
+				"load.",
+				"sws\\load.js"
+			],
+			[
+				"cooper",
+				"sws\\entities\\Tiles\\InventoryOnlyItems\\Scooper.js"
+			],
+			[
+				"animal",
+				"sws\\entities\\Tiles\\AnimalWaste.js"
+			],
+			[
+				"litter",
+				"sws\\entities\\Tiles\\Litter.js"
+			],
+			[
+				"challengelo",
+				"sws\\entities\\ChallengeLogic.js"
+			],
+			[
+				"limitzo",
+				"sws\\components\\LimitZoomPanComponent.js"
+			],
+			[
+				"igeen",
+				"engine\\core\\IgeEntity.js"
+			],
+			[
+				"load",
+				"load.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 199.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -232,18 +232,10 @@
 	"buffers":
 	[
 		{
-			"file": "source/Main.hx",
+			"file": "Main.hx",
 			"settings":
 			{
 				"buffer_size": 1972,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "source/PlayState.hx",
-			"settings":
-			{
-				"buffer_size": 773,
 				"line_ending": "Windows"
 			}
 		}
@@ -338,12 +330,10 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/C/Users/foolmoron/Documents/Projects/ld33/HaxeFlixel Tutorial"
-	],
 	"file_history":
 	[
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/HaxeFlixel Tutorial/source/PlayState.hx",
+		"/C/Users/foolmoron/Documents/Projects/Clickercabra/HaxeFlixel Tutorial/Project.xml",
 		"/C/Users/foolmoron/Desktop/milkytracker-0.90.86-winnt/milkytracker.cfg",
 		"/C/Users/foolmoron/Documents/Projects/ld33/HaxeFlixel Tutorial/HaxeFlixel Tutorial.sublime-project",
 		"/C/Users/foolmoron/Documents/Projects/cheeserat/HaxeFlixel Tutorial/test.sublime-build",
@@ -469,9 +459,7 @@
 		"/C/Program Files/Sublime Text 3/Packages/JavaScript.sublime-package",
 		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Extra Themes/Chrome_DevTools.tmTheme",
 		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Chrome_DevTools.tmTheme",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Notepad-Plus-Plus.tmTheme",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/NotepadPlusPlus/Notepad-Plus-Plus.tmTheme",
-		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings"
+		"/C/Users/foolmoron/AppData/Roaming/Sublime Text 3/Packages/Themes/Notepad-Plus-Plus.tmTheme"
 	],
 	"find":
 	{
@@ -490,6 +478,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"HaxeFlixel Tutorial",
 			"haxe",
 			"Howl",
 			"buffer1sPlaced",
@@ -616,8 +605,7 @@
 			"\"Today\"",
 			"serialize:",
 			"refetch",
-			"accordiona",
-			"status"
+			"accordiona"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -640,7 +628,7 @@
 			[
 				{
 					"buffer": 0,
-					"file": "source/Main.hx",
+					"file": "Main.hx",
 					"semi_transient": false,
 					"settings":
 					{
@@ -651,8 +639,8 @@
 						"selection":
 						[
 							[
-								1349,
-								1349
+								1352,
+								1352
 							]
 						],
 						"settings":
@@ -666,36 +654,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "source/PlayState.hx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 773,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								409,
-								409
-							]
-						],
-						"settings":
-						{
-							"haxe-build-id": 0,
-							"syntax": "Packages/Haxe/Haxe.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -741,7 +699,7 @@
 		"height": 130.0
 	},
 	"pinned_build_system": "",
-	"project": "HaxeFlixel Tutorial.sublime-project",
+	"project": "Clickacabra.sublime-project",
 	"replace":
 	{
 		"height": 52.0
