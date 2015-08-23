@@ -11,12 +11,19 @@ typedef PropertyFunctions = {
 
 class Clickercabra
 {
-	public static var SUFFIXES = [
+	public static var SUFFIXES = [ // clickerheroes ftw
 		"",
 		"K",
 		"M",
 		"B",
 		"T",
+		"q",
+		"Q",
+		"s",
+		"S",
+		"O",
+		"N",
+		"D"
 	];
 	public static function formatBigNum(bigNum:Float) : String {
 		// if (bigNum < 0) return "0";
@@ -108,8 +115,8 @@ class Clickercabra
 			infoString: function(data:Dynamic) { return "During Daytime, Living people can be killed with clicks or Daywalkers. What a shame."; },
 			rateString: null,
 			costString: function(data:Dynamic) { return "Click to kill Living people during Daytime!"; },
-			canBuy: function(data:Dynamic) { return data.L >= 1 && data.isDaytime; },
-			onBuy: function(data:Dynamic) { data.L--; data.D++; }
+			canBuy: null,
+			onBuy: null
 		},
 		"F"=> {
 			infoString: function(data:Dynamic) { return "During Nighttime, Chupacabras harvest Flesh from the Dead. Delicious!"; },
@@ -184,8 +191,8 @@ class Clickercabra
 		if (!PROPERTIES.exists(propertyName)) return false;
 		else return PROPERTIES[propertyName].canBuy != null ? PROPERTIES[propertyName].canBuy(data) : false;
 	}
-	public static function attemptBuy(data:Dynamic, propertyName:String) {
+	public static function doBuy(data:Dynamic, propertyName:String) {
 		if (!PROPERTIES.exists(propertyName)) return;
-		else PROPERTIES[propertyName].onBuy != null ? PROPERTIES[propertyName].onBuy(data) : null;
+		else if (PROPERTIES[propertyName].onBuy != null) PROPERTIES[propertyName].onBuy(data);
 	}
 }

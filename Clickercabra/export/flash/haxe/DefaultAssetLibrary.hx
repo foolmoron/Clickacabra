@@ -53,6 +53,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/borderedsq.png", AssetType.IMAGE);
 		className.set ("assets/images/button.png", __ASSET__assets_images_button_png);
 		type.set ("assets/images/button.png", AssetType.IMAGE);
+		className.set ("assets/images/cant.png", __ASSET__assets_images_cant_png);
+		type.set ("assets/images/cant.png", AssetType.IMAGE);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
 		className.set ("assets/images/popup.png", __ASSET__assets_images_popup_png);
@@ -83,6 +85,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/button.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/cant.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -134,6 +140,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
 		#end
 		
 		#if (windows || mac || linux)
@@ -151,6 +158,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/button.png", __ASSET__assets_images_button_png);
 		type.set ("assets/images/button.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/cant.png", __ASSET__assets_images_cant_png);
+		type.set ("assets/images/cant.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
@@ -774,6 +784,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_borderedsq_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_button_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_cant_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_images_popup_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -783,6 +794,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
 
 
 
@@ -807,6 +819,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:image("assets/images/bg.png") #if display private #end class __ASSET__assets_images_bg_png extends lime.graphics.Image {}
 @:image("assets/images/borderedsq.png") #if display private #end class __ASSET__assets_images_borderedsq_png extends lime.graphics.Image {}
 @:image("assets/images/button.png") #if display private #end class __ASSET__assets_images_button_png extends lime.graphics.Image {}
+@:image("assets/images/cant.png") #if display private #end class __ASSET__assets_images_cant_png extends lime.graphics.Image {}
 @:file("assets/images/images-go-here.txt") #if display private #end class __ASSET__assets_images_images_go_here_txt extends lime.utils.ByteArray {}
 @:image("assets/images/popup.png") #if display private #end class __ASSET__assets_images_popup_png extends lime.graphics.Image {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.ByteArray {}

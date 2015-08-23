@@ -210,83 +210,53 @@ class PlayState extends FlxState
 			sprite.loadGraphic("assets/images/button.png");
 			livingClickable = new ClickableItem(
 				8, 90,
-				sprite, 0xFF0FE504, 0xFF0AD100, 0xFF079700,
-				function() return Clickercabra.formatBigNum(save.data.L),
-				function() return Clickercabra.rateString(save.data, "L"),
-				function() return Clickercabra.infoString(save.data, "L"),
-				function() return Clickercabra.costString(save.data, "L")
+				sprite, 0xFF0FE504, 0xFF0AD100, 0xFF079700, 0.0,
+				save.data, "L"
 			);
 			deadClickable = new ClickableItem(
 				8, 140,
-				sprite, 0xFFFD0000, 0xFFCB0404, 0xFF7A0303,
-				function() return Clickercabra.formatBigNum(save.data.D),
-				function() return Clickercabra.rateString(save.data, "D"),
-				function() return Clickercabra.infoString(save.data, "D"),
-				function() return Clickercabra.costString(save.data, "D")
+				sprite, 0xFFFD0000, 0xFFCB0404, 0xFF7A0303, 0.0,
+				save.data, "D"
 			);
 			fleshClickable = new ClickableItem(
 				8, 190,
-				sprite, 0xFFC44A00, 0xFFC44A00, 0xFFC44A00,
-				function() return Clickercabra.formatBigNum(save.data.F),
-				function() return Clickercabra.rateString(save.data, "F"),
-				function() return Clickercabra.infoString(save.data, "F"),
-				function() return Clickercabra.costString(save.data, "F")
+				sprite, 0xFFC44A00, 0xFFC44A00, 0xFFC44A00, 0.0,
+				save.data, "F"
 			);
 			diamondClickable = new ClickableItem(
 				8, 240,
-				sprite, 0xFF00F3E5, 0xFF00F3E5, 0xFF00F3E5,
-				function() return Clickercabra.formatBigNum(save.data.Z),
-				function() return Clickercabra.rateString(save.data, "Z"),
-				function() return Clickercabra.infoString(save.data, "Z"),
-				function() return Clickercabra.costString(save.data, "Z")
+				sprite, 0xFF00F3E5, 0xFF00F3E5, 0xFF00F3E5, 0.0,
+				save.data, "Z"
 			);
 			chupacabraClickable = new ClickableItem(
 				200, 90,
-				sprite, 0xFFA31B00, 0xFF831803, 0xFF5A1001,
-				function() return Clickercabra.formatBigNum(save.data.C),
-				function() return Clickercabra.rateString(save.data, "C"),
-				function() return Clickercabra.infoString(save.data, "C"),
-				function() return Clickercabra.costString(save.data, "C")
+				sprite, 0xFFA31B00, 0xFF831803, 0xFF5A1001, 1.0,
+				save.data, "C"
 			);
 			daywalkerClickable = new ClickableItem(
 				380, 90,
-				sprite, 0xFF8207BB, 0xFF6E03A0, 0xFF4D0370,
-				function() return Clickercabra.formatBigNum(save.data.W),
-				function() return Clickercabra.rateString(save.data, "W"),
-				function() return Clickercabra.infoString(save.data, "W"),
-				function() return Clickercabra.costString(save.data, "W")
+				sprite, 0xFF8207BB, 0xFF6E03A0, 0xFF4D0370, 1.0,
+				save.data, "W"
 			);
 			motherClickable = new ClickableItem(
 				200, 160,
-				sprite, 0xFFD3D18F, 0xFFADAB6F, 0xFF7E7D55,
-				function() return Clickercabra.formatBigNum(save.data.M),
-				function() return Clickercabra.rateString(save.data, "M"),
-				function() return Clickercabra.infoString(save.data, "M"),
-				function() return Clickercabra.costString(save.data, "M")
+				sprite, 0xFFD3D18F, 0xFFADAB6F, 0xFF7E7D55, 1.0,
+				save.data, "M"
 			);
 			nestClickable = new ClickableItem(
 				380, 160,
-				sprite, 0xFFA2E066, 0xFF8BBF58, 0xFF699141,
-				function() return Clickercabra.formatBigNum(save.data.N),
-				function() return Clickercabra.rateString(save.data, "N"),
-				function() return Clickercabra.infoString(save.data, "N"),
-				function() return Clickercabra.costString(save.data, "N")
+				sprite, 0xFFA2E066, 0xFF8BBF58, 0xFF699141, 1.0,
+				save.data, "N"
 			);
 			goatClickable = new ClickableItem(
 				200, 230,
-				sprite, 0xFFBCBCBC, 0xFF9B9B9B, 0xFF606060,
-				function() return Clickercabra.formatBigNum(save.data.G),
-				function() return Clickercabra.rateString(save.data, "G"),
-				function() return Clickercabra.infoString(save.data, "G"),
-				function() return Clickercabra.costString(save.data, "G")
+				sprite, 0xFFBCBCBC, 0xFF9B9B9B, 0xFF606060, 1.0,
+				save.data, "G"
 			);
 			puppyClickable = new ClickableItem(
 				380, 230,
-				sprite, 0xFFF9DD21, 0xFFDCC41F, 0xFFA4921A,
-				function() return Clickercabra.formatBigNum(save.data.P),
-				function() return Clickercabra.rateString(save.data, "P"),
-				function() return Clickercabra.infoString(save.data, "P"),
-				function() return Clickercabra.costString(save.data, "P")
+				sprite, 0xFFF9DD21, 0xFFDCC41F, 0xFFA4921A, 1.0,
+				save.data, "P"
 			);
 			var clickables = [livingClickable, deadClickable, fleshClickable, diamondClickable, chupacabraClickable, daywalkerClickable, motherClickable, nestClickable, goatClickable, puppyClickable];
 			for (i in 0...clickables.length) {
@@ -318,13 +288,13 @@ class PlayState extends FlxState
 		// }
 		// set up buttons
 		{
-			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickercabra.attemptBuy(save.data, "D"); });
-			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickercabra.attemptBuy(save.data, "C"); });
-			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickercabra.attemptBuy(save.data, "W"); });
-			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickercabra.attemptBuy(save.data, "M"); });
-			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickercabra.attemptBuy(save.data, "N"); });
-			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickercabra.attemptBuy(save.data, "G"); });
-			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickercabra.attemptBuy(save.data, "P"); });
+			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickercabra.doBuy(save.data, "D"); });
+			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickercabra.doBuy(save.data, "C"); });
+			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickercabra.doBuy(save.data, "W"); });
+			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickercabra.doBuy(save.data, "M"); });
+			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickercabra.doBuy(save.data, "N"); });
+			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickercabra.doBuy(save.data, "G"); });
+			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickercabra.doBuy(save.data, "P"); });
 			buttons = [null, null, null, dButton, null, null, cButton, wButton, mButton, nButton, gButton, pButton];
 			for (i in 0...buttons.length) {
 				if (buttons[i] == null) continue;

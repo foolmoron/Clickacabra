@@ -13,15 +13,19 @@ class ClickableItem extends FlxGroup
   public var x:Float;
   public var y:Float;
 
+  public var dataObj:Dynamic;
+  public var propertyName:String;
+  public var buyable:Bool;
+
+  public var layerLow:FlxGroup;
+  public var layerMedium:FlxGroup;
+  public var layerTop:FlxGroup;
+
   public var spriteHitbox:FlxObject;
   public var normalSprite:FlxSprite;
   public var hoverSprite:FlxSprite;
   public var clickSprite:FlxSprite;
-
-  public var countStringGenerator:Void->String;
-  public var rateStringGenerator:Void->String;
-  public var infoStringGenerator:Void->String;
-  public var costStringGenerator:Void->String;
+  public var cantbuySprite:FlxSprite;
 
   public var countText:FlxText;
   public var rateText:FlxText;
@@ -30,21 +34,25 @@ class ClickableItem extends FlxGroup
   public var infoText:FlxText;
   public var costText:FlxText;
 
-  public function new(x:Float, y:Float, sprite:FlxSprite, normalColor:Int, hoverColor:Int, clickColor:Int, countStringGenerator:Void->String, rateStringGenerator:Void->String, infoStringGenerator:Void->String, costStringGenerator:Void->String) {
+  public function new(x:Float, y:Float, sprite:FlxSprite, normalColor:Int, hoverColor:Int, clickColor:Int, cantbuyAlpha:Float, dataObj:Dynamic, propertyName:String) {
     super();
 
     this.x = x;
     this.y = y;
+    this.dataObj = dataObj;
+    this.propertyName = propertyName;
     this.normalSprite = sprite.clone();
     this.normalSprite.color = normalColor;
     this.hoverSprite = sprite.clone();
     this.hoverSprite.color = hoverColor;
     this.clickSprite = sprite.clone();
     this.clickSprite.color = clickColor;
-    this.countStringGenerator = countStringGenerator;
-    this.rateStringGenerator = rateStringGenerator;
-    this.infoStringGenerator = infoStringGenerator;
-    this.costStringGenerator = costStringGenerator;
+    this.cantbuySprite = new FlxSprite(0, 0).loadGraphic("assets/images/cant.png");
+    this.cantbuySprite.alpha = cantbuyAlpha;
+
+    layerLow = new FlxGroup();
+    layerMedium = new FlxGroup();
+    layerTop = new FlxGroup();
 
     // mouse events
     {
@@ -52,37 +60,45 @@ class ClickableItem extends FlxGroup
       MouseEventManager.add(
         spriteHitbox,
         function(downObj) {
-          remove(normalSprite);
-          remove(hoverSprite);
-          add(clickSprite);
-          remove(popupBG);
-          remove(infoText);
-          remove(costText);
+          if (buyable) {
+            layerLow.remove(normalSprite);
+            layerLow.remove(hoverSprite);
+            layerLow.add(clickSprite);
+          }
+          layerTop.remove(popupBG);
+          layerTop.remove(infoText);
+          layerTop.remove(costText);
         },
         function(upObj) {
-          remove(normalSprite);
-          add(hoverSprite);
-          remove(clickSprite);
-          remove(popupBG);
-          remove(infoText);
-          remove(costText);
-          //attempt buy
+          if (buyable) {
+            layerLow.remove(normalSprite);
+            layerLow.add(hoverSprite);
+            layerLow.remove(clickSprite);
+            Clickercabra.doBuy(dataObj, propertyName);
+          }
+          layerTop.remove(popupBG);
+          layerTop.remove(infoText);
+          layerTop.remove(costText);
         },
         function(overObj) {
-          remove(normalSprite);
-          add(hoverSprite);
-          remove(clickSprite);
-          add(popupBG);
-          add(infoText);
-          add(costText);
+          if (buyable) {
+            layerLow.remove(normalSprite);
+            layerLow.add(hoverSprite);
+            layerLow.remove(clickSprite);
+          }
+          layerTop.add(popupBG);
+          layerTop.add(infoText);
+          layerTop.add(costText);
         },
         function(outObj) {
-          add(normalSprite);
-          remove(hoverSprite);
-          remove(clickSprite);
-          remove(popupBG);
-          remove(infoText);
-          remove(costText);
+          if (buyable) {
+            layerLow.add(normalSprite);
+            layerLow.remove(hoverSprite);
+            layerLow.remove(clickSprite);
+          }
+          layerTop.remove(popupBG);
+          layerTop.remove(infoText);
+          layerTop.remove(costText);
         }
       );
       add(spriteHitbox);
@@ -107,11 +123,14 @@ class ClickableItem extends FlxGroup
       costText = new FlxText(0, 0, 120, null, 8);
       costText.color = 0xFF000000;
     }
-    // add stuff
+    // add stuff using layers
     {
       add(normalSprite);
       add(countText);
       add(rateText);
+      add(layerLow);
+      add(layerMedium);
+      add(layerTop);
     }
   }
 
@@ -119,8 +138,8 @@ class ClickableItem extends FlxGroup
   {
     // TODO: position things on item position
     {
-      spriteHitbox.x = normalSprite.x = hoverSprite.x = clickSprite.x = x + 0;
-      spriteHitbox.y = normalSprite.y = hoverSprite.y = clickSprite.y = y + 0;
+      spriteHitbox.x = normalSprite.x = hoverSprite.x = clickSprite.x = cantbuySprite.x = x + 0;
+      spriteHitbox.y = normalSprite.y = hoverSprite.y = clickSprite.y = cantbuySprite.y = y + 0;
 
       countText.x = x + 40;
       countText.y = y + 4;
@@ -133,12 +152,21 @@ class ClickableItem extends FlxGroup
       infoText.y = y - 82;
       costText.y = y - 23;
     }
+    // update sprite buyable
+    {
+      buyable = Clickercabra.canBuy(dataObj, propertyName);
+      if (buyable) {
+        layerMedium.remove(cantbuySprite);  
+      } else {
+        layerMedium.add(cantbuySprite);      
+      }
+    }
     // update texts
     {
-      countText.text = countStringGenerator();
-      rateText.text = rateStringGenerator();
-      infoText.text = infoStringGenerator();
-      costText.text = costStringGenerator();
+      countText.text = Clickercabra.formatBigNum(Reflect.field(dataObj, propertyName));
+      rateText.text = Clickercabra.rateString(dataObj, propertyName);
+      infoText.text = Clickercabra.infoString(dataObj, propertyName);
+      costText.text = Clickercabra.costString(dataObj, propertyName);
     }
     super.update();
   }
