@@ -134,7 +134,7 @@ class Clickercabra
 		},
 		"W"=> {
 			infoString: function(data:Dynamic) { return "The Daywalker is an evolved Chupacabra who goes out during the day to kill Living people."; },
-			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead accmulated/s"; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead accumulated/s"; },
 			costString: function(data:Dynamic) { return "Evolve a Chupacabra into a Daywalker with 50 Flesh!"; },
 			canBuy: function(data:Dynamic) { return data.C >= 1 && data.F >= 50; },
 			onBuy: function(data:Dynamic) { data.C--; data.F -= 50; data.W++; }

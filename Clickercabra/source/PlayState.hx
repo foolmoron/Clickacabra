@@ -188,6 +188,7 @@ class PlayState extends FlxState
 
 			everythingGroup.forEach(function(sprite) {
 				sprite.acceleration.y = 100;
+				sprite.velocity.y = FlxRandom.floatRanged(0, 100);
 				sprite.velocity.x = FlxRandom.chanceRoll() ? 50 : -50;
 				sprite.velocity.x = FlxRandom.chanceRoll() ? sprite.velocity.x * 1.5 : sprite.velocity.x;
 				sprite.velocity.x = FlxRandom.chanceRoll() ? sprite.velocity.x * 1.5 : sprite.velocity.x;
@@ -203,10 +204,11 @@ class PlayState extends FlxState
 		}
 		// set up clickables
 		{
-			var s = new FlxSprite(0, 0);
+			var sprite = new FlxSprite(0, 0);
+			sprite.loadGraphic("assets/images/button.png");
 			livingClickable = new ClickableItem(
 				8, 90,
-				s.makeGraphic(32, 32, 0xFF0FE504), s.makeGraphic(32, 32, 0xFF0AD100), s.makeGraphic(32, 32, 0xFF079700),
+				sprite, 0xFF0FE504, 0xFF0AD100, 0xFF079700,
 				function() return Clickercabra.formatBigNum(save.data.L),
 				function() return Clickercabra.rateString(save.data, "L"),
 				function() return Clickercabra.infoString(save.data, "L"),
@@ -214,7 +216,7 @@ class PlayState extends FlxState
 			);
 			deadClickable = new ClickableItem(
 				8, 140,
-				s.makeGraphic(32, 32, 0xFFFD0000), s.makeGraphic(32, 32, 0xFFCB0404), s.makeGraphic(32, 32, 0xFF7A0303),
+				sprite, 0xFFFD0000, 0xFFCB0404, 0xFF7A0303,
 				function() return Clickercabra.formatBigNum(save.data.D),
 				function() return Clickercabra.rateString(save.data, "D"),
 				function() return Clickercabra.infoString(save.data, "D"),
@@ -222,7 +224,7 @@ class PlayState extends FlxState
 			);
 			fleshClickable = new ClickableItem(
 				8, 190,
-				s.makeGraphic(32, 32, 0xFFC44A00), s.makeGraphic(32, 32, 0xFFC44A00), s.makeGraphic(32, 32, 0xFFC44A00),
+				sprite, 0xFFC44A00, 0xFFC44A00, 0xFFC44A00,
 				function() return Clickercabra.formatBigNum(save.data.F),
 				function() return Clickercabra.rateString(save.data, "F"),
 				function() return Clickercabra.infoString(save.data, "F"),
@@ -230,7 +232,7 @@ class PlayState extends FlxState
 			);
 			diamondClickable = new ClickableItem(
 				8, 240,
-				s.makeGraphic(32, 32, 0xFF00F3E5), s.makeGraphic(32, 32, 0xFF00F3E5), s.makeGraphic(32, 32, 0xFF00F3E5),
+				sprite, 0xFF00F3E5, 0xFF00F3E5, 0xFF00F3E5,
 				function() return Clickercabra.formatBigNum(save.data.Z),
 				function() return Clickercabra.rateString(save.data, "Z"),
 				function() return Clickercabra.infoString(save.data, "Z"),
@@ -238,7 +240,7 @@ class PlayState extends FlxState
 			);
 			chupacabraClickable = new ClickableItem(
 				200, 90,
-				s.makeGraphic(32, 32, 0xFFA31B00), s.makeGraphic(32, 32, 0xFF831803), s.makeGraphic(32, 32, 0xFF5A1001),
+				sprite, 0xFFA31B00, 0xFF831803, 0xFF5A1001,
 				function() return Clickercabra.formatBigNum(save.data.C),
 				function() return Clickercabra.rateString(save.data, "C"),
 				function() return Clickercabra.infoString(save.data, "C"),
@@ -246,7 +248,7 @@ class PlayState extends FlxState
 			);
 			daywalkerClickable = new ClickableItem(
 				380, 90,
-				s.makeGraphic(32, 32, 0xFF8207BB), s.makeGraphic(32, 32, 0xFF6E03A0), s.makeGraphic(32, 32, 0xFF4D0370),
+				sprite, 0xFF8207BB, 0xFF6E03A0, 0xFF4D0370,
 				function() return Clickercabra.formatBigNum(save.data.W),
 				function() return Clickercabra.rateString(save.data, "W"),
 				function() return Clickercabra.infoString(save.data, "W"),
@@ -254,7 +256,7 @@ class PlayState extends FlxState
 			);
 			motherClickable = new ClickableItem(
 				200, 160,
-				s.makeGraphic(32, 32, 0xFFD3D18F), s.makeGraphic(32, 32, 0xFFADAB6F), s.makeGraphic(32, 32, 0xFF7E7D55),
+				sprite, 0xFFD3D18F, 0xFFADAB6F, 0xFF7E7D55,
 				function() return Clickercabra.formatBigNum(save.data.M),
 				function() return Clickercabra.rateString(save.data, "M"),
 				function() return Clickercabra.infoString(save.data, "M"),
@@ -262,7 +264,7 @@ class PlayState extends FlxState
 			);
 			nestClickable = new ClickableItem(
 				380, 160,
-				s.makeGraphic(32, 32, 0xFFA2E066), s.makeGraphic(32, 32, 0xFF8BBF58), s.makeGraphic(32, 32, 0xFF699141),
+				sprite, 0xFFA2E066, 0xFF8BBF58, 0xFF699141,
 				function() return Clickercabra.formatBigNum(save.data.N),
 				function() return Clickercabra.rateString(save.data, "N"),
 				function() return Clickercabra.infoString(save.data, "N"),
@@ -270,7 +272,7 @@ class PlayState extends FlxState
 			);
 			goatClickable = new ClickableItem(
 				200, 230,
-				s.makeGraphic(32, 32, 0xFFBCBCBC), s.makeGraphic(32, 32, 0xFF9B9B9B), s.makeGraphic(32, 32, 0xFF606060),
+				sprite, 0xFFBCBCBC, 0xFF9B9B9B, 0xFF606060,
 				function() return Clickercabra.formatBigNum(save.data.G),
 				function() return Clickercabra.rateString(save.data, "G"),
 				function() return Clickercabra.infoString(save.data, "G"),
@@ -278,7 +280,7 @@ class PlayState extends FlxState
 			);
 			puppyClickable = new ClickableItem(
 				380, 230,
-				s.makeGraphic(32, 32, 0xFFF9DD21), s.makeGraphic(32, 32, 0xFFDCC41F), s.makeGraphic(32, 32, 0xFFA4921A),
+				sprite, 0xFFF9DD21, 0xFFDCC41F, 0xFFA4921A,
 				function() return Clickercabra.formatBigNum(save.data.P),
 				function() return Clickercabra.rateString(save.data, "P"),
 				function() return Clickercabra.infoString(save.data, "P"),
@@ -329,20 +331,20 @@ class PlayState extends FlxState
 				buttons[i].button.y = i * 22 + 10;
 			}
 		}
-		// debug grid
-		{
-			var cellSize = 10;
-			for (x in 0...Std.int(FlxG.width/cellSize)) {
-				var vertLine = new FlxSprite(x * cellSize, 0);
-				vertLine.makeGraphic(1, FlxG.height, 0x40FFFFFF);
-				add(vertLine);
-			}
-			for (y in 0...Std.int(FlxG.height/cellSize)) {
-				var horizLine = new FlxSprite(0, y * cellSize);
-				horizLine.makeGraphic(FlxG.width, 1, 0x40FFFFFF);
-				add(horizLine);
-			}
-		}
+		// // debug grid
+		// {
+		// 	var cellSize = 10;
+		// 	for (x in 0...Std.int(FlxG.width/cellSize)) {
+		// 		var vertLine = new FlxSprite(x * cellSize, 0);
+		// 		vertLine.makeGraphic(1, FlxG.height, 0x40FFFFFF);
+		// 		add(vertLine);
+		// 	}
+		// 	for (y in 0...Std.int(FlxG.height/cellSize)) {
+		// 		var horizLine = new FlxSprite(0, y * cellSize);
+		// 		horizLine.makeGraphic(FlxG.width, 1, 0x40FFFFFF);
+		// 		add(horizLine);
+		// 	}
+		// }
 		// debug text
 		{
 			testText = new FlxText(200, 250, 0, null, 16);

@@ -27,14 +27,17 @@ class ClickableItem extends FlxGroup
   public var infoText:FlxText;
   public var costText:FlxText;
 
-  public function new(x:Float, y:Float, normalSprite:FlxSprite, hoverSprite:FlxSprite, clickSprite:FlxSprite, countStringGenerator:Void->String, rateStringGenerator:Void->String, infoStringGenerator:Void->String, costStringGenerator:Void->String) {
+  public function new(x:Float, y:Float, sprite:FlxSprite, normalColor:Int, hoverColor:Int, clickColor:Int, countStringGenerator:Void->String, rateStringGenerator:Void->String, infoStringGenerator:Void->String, costStringGenerator:Void->String) {
     super();
 
     this.x = x;
     this.y = y;
-    this.normalSprite = normalSprite.clone();
-    this.hoverSprite = hoverSprite.clone();
-    this.clickSprite = clickSprite.clone();
+    this.normalSprite = sprite.clone();
+    this.normalSprite.color = normalColor;
+    this.hoverSprite = sprite.clone();
+    this.hoverSprite.color = hoverColor;
+    this.clickSprite = sprite.clone();
+    this.clickSprite.color = clickColor;
     this.countStringGenerator = countStringGenerator;
     this.rateStringGenerator = rateStringGenerator;
     this.infoStringGenerator = infoStringGenerator;
@@ -96,8 +99,8 @@ class ClickableItem extends FlxGroup
     // TODO: show correct sprite based on mouse state
     {
       add(normalSprite);
-      add(hoverSprite);
-      add(clickSprite);
+      remove(hoverSprite);
+      remove(clickSprite);
     }
     // TODO: show popup based on mouse state
     {
