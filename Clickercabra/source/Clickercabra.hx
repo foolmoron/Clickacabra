@@ -107,14 +107,14 @@ class Clickercabra
 		"L"=> {
 			infoString: function(data:Dynamic) { return "Living people are attracted to this the legend of the Chupacabra in this field. Click to kill them!"; },
 			rateString: null,
-			costString: function(data:Dynamic) { return "Click to kill Living people during Daytime!"; },
+			costString: function(data:Dynamic) { return "Click sky during Daytime to kill Living people. You monster."; },
 			canBuy: null,
 			onBuy: null,
 		},
 		"D"=> {
 			infoString: function(data:Dynamic) { return "During Daytime, Living people can be killed with clicks or Daywalkers. What a shame."; },
 			rateString: null,
-			costString: function(data:Dynamic) { return "Click to kill Living people during Daytime!"; },
+			costString: function(data:Dynamic) { return "Click sky during Daytime to kill Living people. You monster."; },
 			canBuy: null,
 			onBuy: null
 		},
@@ -133,15 +133,15 @@ class Clickercabra
 			onBuy: null,
 		},
 		"C"=> {
-			infoString: function(data:Dynamic) { return "The legendary Chupacabra feeds on the Dead to harvest Flesh. Is it the monster, or are you?"; },
-			rateString: function(data:Dynamic) { return formatBigNum(data.rateDtoF) + " Flesh harvested/s"; },
+			infoString: function(data:Dynamic) { return "The legendary Chupacabra feeds on the Dead at Night to harvest Flesh. Is it the monster, or are you?"; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateDtoF) + " Flesh/s at Night"; },
 			costString: function(data:Dynamic) { return "Spawn a Chupacabra with 3 Flesh!"; },
 			canBuy: function(data:Dynamic) { return data.F >= ((data.C == 0) ? 0 : 3); },
 			onBuy: function(data:Dynamic) { data.F -= ((data.C == 0) ? 0 : 3); data.C++; }
 		},
 		"W"=> {
-			infoString: function(data:Dynamic) { return "The Daywalker is an evolved Chupacabra who goes out during the day to kill Living people."; },
-			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead accumulated/s"; },
+			infoString: function(data:Dynamic) { return "The Daywalker is an evolved Chupacabra who goes out during During to kill Living people."; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead/s during Day"; },
 			costString: function(data:Dynamic) { return "Evolve a Chupacabra into a Daywalker with 50 Flesh!"; },
 			canBuy: function(data:Dynamic) { return data.C >= 1 && data.F >= 50; },
 			onBuy: function(data:Dynamic) { data.C--; data.F -= 50; data.W++; }

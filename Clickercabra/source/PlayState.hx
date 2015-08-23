@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
@@ -12,6 +13,7 @@ import flixel.util.FlxTimer;
 import flixel.util.FlxMath;
 import flixel.util.FlxColorUtil;
 import flixel.util.FlxRandom;
+import flixel.plugin.MouseEventManager;
 
 class PlayState extends FlxState
 {
@@ -26,6 +28,7 @@ class PlayState extends FlxState
 	public static inline var SKY_LERP_STEPS = 100;
 	var skyBackground:FlxSprite;
 	var skyDarkening:FlxSprite;
+	var skyHitbox:FlxObject;
 	var skyColors:Array<Int> = [
 		// sunrise
 		0xFFFFBB00, 
@@ -94,7 +97,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		FlxG.autoPause = false; // it's an idler, so let it always play
-		FlxG.plugins.add(new flixel.plugin.MouseEventManager());
+		FlxG.plugins.add(new MouseEventManager());
 		FlxG.debugger.drawDebug = false;
 
 		// set up save data
@@ -126,6 +129,21 @@ class PlayState extends FlxState
 		{
 			skyBackground = new FlxSprite(0, 0);
 			add(skyBackground);
+		}
+		// make sky click behavior
+		{
+			skyHitbox = new FlxObject(0, 0, FlxG.width, SKY_HEIGHT);
+			MouseEventManager.add(skyHitbox,
+				function(downObj) {
+					if (save.data.L >= 1 && save.data.isDaytime) {
+						save.data.L--;
+						save.data.D++;
+					}
+				},
+				null,
+				null,
+				null
+			);
 		}
 		// set up sprite groups
 		{
