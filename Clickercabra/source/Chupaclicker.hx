@@ -96,53 +96,96 @@ class Chupaclicker
 		}
 	}
 
-	public static var PROPERTIES:Map<String, { onBuy:Dynamic->Void, costString:Dynamic->String, canBuy:Dynamic->Bool }> = [
+	public static var PROPERTIES:Map<String, { infoString:Dynamic->String, rateString:Dynamic->String, costString:Dynamic->String, canBuy:Dynamic->Bool, onBuy:Dynamic->Void }> = [
+		"L"=> {
+			infoString: function(data:Dynamic) { return "Living people are attracted to this the legend of the Chupacabra in this field. Click to kill them!"; },
+			rateString: null,
+			costString: function(data:Dynamic) { return "Click to kill Livingpeople during Daytime!"; },
+			canBuy: null,
+			onBuy: null,
+		},
 		"D"=> {
+			infoString: function(data:Dynamic) { return "During Daytime, Living people can be killed with clicks or Daywalkers. What a shame."; },
+			rateString: null,
+			costString: function(data:Dynamic) { return "Click to kill Livingpeople during Daytime!"; },
 			canBuy: function(data:Dynamic) { return data.L >= 1 && data.isDaytime; },
-			costString: function(data:Dynamic) { return "During the day, click on a human to kill them!"; },
 			onBuy: function(data:Dynamic) { data.L--; data.D++; }
 		},
+		"F"=> {
+			infoString: function(data:Dynamic) { return "During Nighttime, Chupacabras harvest Flesh from the Dead. Delicious!"; },
+			rateString: null,
+			costString: null,
+			canBuy: null,
+			onBuy: null,
+		},
+		"Z"=> {
+			infoString: function(data:Dynamic) { return "Sometimes people will drop Diamonds when they are killed. These are VERY rare..."; },
+			rateString: null,
+			costString: null,
+			canBuy: null,
+			onBuy: null,
+		},
 		"C"=> {
-			canBuy: function(data:Dynamic) { return data.F >= ((data.C == 0) ? 0 : 3); },
+			infoString: function(data:Dynamic) { return "The legendary Chupacabra feeds on the Dead to harvest Flesh. Is it the monster, or are you?"; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateDtoF) + " Flesh harvested/s"; },
 			costString: function(data:Dynamic) { return "Spawn a Chupacabra with 3 Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.F >= ((data.C == 0) ? 0 : 3); },
 			onBuy: function(data:Dynamic) { data.F -= ((data.C == 0) ? 0 : 3); data.C++; }
 		},
 		"W"=> {
+			infoString: function(data:Dynamic) { return "The Daywalker is an evolved Chupacabra who goes out during the day to kill Living people."; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead accmulated/s"; },
+			costString: function(data:Dynamic) { return "Evolve a Chupacabra into a Daywalker with 50 Flesh!"; },
 			canBuy: function(data:Dynamic) { return data.C >= 1 && data.F >= 50; },
-			costString: function(data:Dynamic) { return "Convert a Chupacabra into a Daywalker with 50 Flesh!"; },
 			onBuy: function(data:Dynamic) { data.C--; data.F -= 50; data.W++; }
 		},
 		"M"=> {
-			canBuy: function(data:Dynamic) { return data.C >= 50 && data.F >= (300 * Math.pow(2, data.M)); },
+			infoString: function(data:Dynamic) { return "The Mother spawns Chupacabras over time via osmosis or something like that."; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateC) + " Chupacabras spawned/s"; },
 			costString: function(data:Dynamic) { return "Create a Mother with 50 Chupacabras and " + formatBigNum(300 * Math.pow(2, data.M)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.C >= 50 && data.F >= (300 * Math.pow(2, data.M)); },
 			onBuy: function(data:Dynamic) { data.C -= 50; data.F -= (300 * Math.pow(2, data.M)); data.M++; }
 		},
 		"N"=> {
-			canBuy: function(data:Dynamic) { return data.W >= 50 && data.F >= (300 * Math.pow(2, data.N)); },
+			infoString: function(data:Dynamic) { return "The Nest is where Chupacabras study to obtain their Daywalking degree."; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateW) + " Daywalkers spawned/s"; },
 			costString: function(data:Dynamic) { return "Create a Nest with 50 Daywalkers and " + formatBigNum(300 * Math.pow(2, data.N)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.W >= 50 && data.F >= (300 * Math.pow(2, data.N)); },
 			onBuy: function(data:Dynamic) { data.W -= 50; data.F -= (300 * Math.pow(2, data.N)); data.N++; }
 		},
 		"G"=> {
-			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.G)); },
+			infoString: function(data:Dynamic) { return "Goat Farms make your Chupacabras excited and faster at harvesting Flesh."; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.multiplierDtoF) + "x Flesh harvesting"; },
 			costString: function(data:Dynamic) { return "Upgrade your Goat Farm with " + formatBigNum(500 * Math.pow(2, data.G)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.G)); },
 			onBuy: function(data:Dynamic) { data.F -= (500 * Math.pow(2, data.G)); data.G++; }
 		},
 		"P"=> {
-			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.P)); },
+			infoString: function(data:Dynamic) { return "Puppies attract more Living to the area. People love puppies!"; },
+			rateString: function(data:Dynamic) { return formatBigNum(data.multiplierL) + "x Living attracted"; },
 			costString: function(data:Dynamic) { return "Upgrade your Goat Farm with " + formatBigNum(500 * Math.pow(2, data.P)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.P)); },
 			onBuy: function(data:Dynamic) { data.F -= (500 * Math.pow(2, data.P)); data.P++; }
 		},
 	];
-	public static function canBuy(data:Dynamic, propertyName:String) : Bool {
-		if (!PROPERTIES.exists(propertyName)) return false;
-		else return PROPERTIES[propertyName].canBuy(data);
+	public static function infoString(data:Dynamic, propertyName:String) : String {
+		if (!PROPERTIES.exists(propertyName)) return "???";
+		else return PROPERTIES[propertyName].infoString != null ? PROPERTIES[propertyName].infoString(data) : "";
 	}
 	public static function costString(data:Dynamic, propertyName:String) : String {
 		if (!PROPERTIES.exists(propertyName)) return "???";
-		else return PROPERTIES[propertyName].costString(data);
+		else return PROPERTIES[propertyName].costString != null ? PROPERTIES[propertyName].costString(data) : "";
+	}
+	public static function rateString(data:Dynamic, propertyName:String) : String {
+		if (!PROPERTIES.exists(propertyName)) return "???";
+		else return PROPERTIES[propertyName].rateString != null ? PROPERTIES[propertyName].rateString(data) : "";
+	}
+	public static function canBuy(data:Dynamic, propertyName:String) : Bool {
+		if (!PROPERTIES.exists(propertyName)) return false;
+		else return PROPERTIES[propertyName].canBuy != null ? PROPERTIES[propertyName].canBuy(data) : false;
 	}
 	public static function attemptBuy(data:Dynamic, propertyName:String) {
 		if (!PROPERTIES.exists(propertyName)) return;
-		else PROPERTIES[propertyName].onBuy(data);
+		else PROPERTIES[propertyName].onBuy != null ? PROPERTIES[propertyName].onBuy(data) : null;
 	}
 }
