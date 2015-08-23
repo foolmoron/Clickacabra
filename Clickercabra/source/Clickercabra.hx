@@ -44,7 +44,7 @@ class Clickercabra
 	}
 
 
-	public static inline var CONVERSION_INTERAL = 2.0; // seconds between processing each conversion
+	public static inline var CONVERSION_INTERAL = 1.0; // seconds between processing each conversion
 	public static function idle(data:Dynamic, dt:Float, dayLength:Float, nightLength:Float) {
 		// advance time in day=
 		var prevTimeInDay:Float = data.timeInDay;
@@ -53,11 +53,11 @@ class Clickercabra
 		data.isNighttime = !data.isDaytime;
 
 		// calculate rates
-		data.multiplierDtoF = Math.pow(2, data.G); // each Goat doubles Chupacabra's harvesting of Flesh from Dead
-		data.multiplierL = Math.pow(2, data.P); // each Puppy doubles the amount Living coming to be killed by Daywalkers
-		data.rateL = 1.0 * data.multiplierL; // Living are attracted to the area per Daytime second
-		data.rateC = 1.0 * ((data.M > 0) ? Math.pow(2, data.M) : 0); // Mothers spawn Chupacabras per second
-		data.rateW = 1.0 * ((data.N > 0) ? Math.pow(2, data.N) : 0); // Nests spawn Daywalkers per second
+		data.multiplierDtoF = Math.pow(2, data.G); // each Goat multiplies Chupacabra's harvesting of Flesh from Dead
+		data.multiplierL = Math.pow(5, data.P); // each Puppy multiplies the amount Living coming to be killed by Daywalkers
+		data.rateL = 2.5 * data.multiplierL; // Living are attracted to the area per Daytime second
+		data.rateC = 1.0 * ((data.M > 0) ? Math.pow(1.5, data.M) : 0); // Mothers spawn Chupacabras per second
+		data.rateW = 1.0 * ((data.N > 0) ? Math.pow(1.5, data.N) : 0); // Nests spawn Daywalkers per second
 		data.rateDtoF = 1.0 * data.C * data.multiplierDtoF; // Chupacabras turn Dead into Flesh per Nightime second
 		data.rateLtoD = 1.0 * data.W; // Daywalkers turn Living into Dead per Daytime second
 
@@ -106,7 +106,7 @@ class Clickercabra
 	public static var PROPERTIES:Map<String, { infoString:Dynamic->String, rateString:Dynamic->String, costString:Dynamic->String, canBuy:Dynamic->Bool, onBuy:Dynamic->Void }> = [
 		"L"=> {
 			infoString: function(data:Dynamic) { return "Living people are attracted to this the legend of the Chupacabra in this field. Click to kill them!"; },
-			rateString: null,
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateL) + " Living/s during Daytime"; },
 			costString: function(data:Dynamic) { return "Click sky during Daytime to kill Living people. You monster."; },
 			canBuy: null,
 			onBuy: null,
@@ -142,37 +142,37 @@ class Clickercabra
 		"W"=> {
 			infoString: function(data:Dynamic) { return "The Daywalker is an evolved Chupacabra who goes out during During to kill Living people."; },
 			rateString: function(data:Dynamic) { return formatBigNum(data.rateLtoD) + " Dead/s during Day"; },
-			costString: function(data:Dynamic) { return "Evolve a Chupacabra into a Daywalker with 50 Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.C >= 1 && data.F >= 50; },
-			onBuy: function(data:Dynamic) { data.C--; data.F -= 50; data.W++; }
+			costString: function(data:Dynamic) { return "Evolve 5 Chupacabras into a Daywalker with 50 Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.C >= 5 && data.F >= 50; },
+			onBuy: function(data:Dynamic) { data.C -= 5; data.F -= 50; data.W++; }
 		},
 		"M"=> {
 			infoString: function(data:Dynamic) { return "The Mother spawns Chupacabras over time via osmosis or something like that."; },
-			rateString: function(data:Dynamic) { return formatBigNum(data.rateC) + " Chupacabras spawned/s"; },
-			costString: function(data:Dynamic) { return "Create a Mother with 50 Chupacabras and " + formatBigNum(300 * Math.pow(2, data.M)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.C >= 50 && data.F >= (300 * Math.pow(2, data.M)); },
-			onBuy: function(data:Dynamic) { data.C -= 50; data.F -= (300 * Math.pow(2, data.M)); data.M++; }
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateC) + " Chupacabras spawn/s"; },
+			costString: function(data:Dynamic) { return "Create a Mother with " + formatBigNum(50 * Math.pow(2, data.M)) + " Chupacabras and " + formatBigNum(1000 * Math.pow(2, data.M)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.C >= (50 * Math.pow(2, data.M)) && data.F >= (1000 * Math.pow(2, data.M)); },
+			onBuy: function(data:Dynamic) { data.C -= (50 * Math.pow(2, data.M)); data.F -= (1000 * Math.pow(2, data.M)); data.M++; }
 		},
 		"N"=> {
 			infoString: function(data:Dynamic) { return "The Nest is where Chupacabras study to obtain their Daywalking degree."; },
-			rateString: function(data:Dynamic) { return formatBigNum(data.rateW) + " Daywalkers spawned/s"; },
-			costString: function(data:Dynamic) { return "Create a Nest with 50 Daywalkers and " + formatBigNum(300 * Math.pow(2, data.N)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.W >= 50 && data.F >= (300 * Math.pow(2, data.N)); },
-			onBuy: function(data:Dynamic) { data.W -= 50; data.F -= (300 * Math.pow(2, data.N)); data.N++; }
+			rateString: function(data:Dynamic) { return formatBigNum(data.rateW) + " Daywalkers spawn/s"; },
+			costString: function(data:Dynamic) { return "Create a Nest with " + formatBigNum(50 * Math.pow(2, data.N)) + " Daywalkers and " + formatBigNum(1000 * Math.pow(2, data.N)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.W >= (50 * Math.pow(2, data.N)) && data.F >= (1000 * Math.pow(2, data.N)); },
+			onBuy: function(data:Dynamic) { data.W -= (50 * Math.pow(2, data.N)); data.F -= (1000 * Math.pow(2, data.N)); data.N++; }
 		},
 		"G"=> {
 			infoString: function(data:Dynamic) { return "Goat Farms make your Chupacabras excited and faster at harvesting Flesh."; },
 			rateString: function(data:Dynamic) { return formatBigNum(data.multiplierDtoF) + "x Flesh harvesting"; },
-			costString: function(data:Dynamic) { return "Upgrade your Goat Farm with " + formatBigNum(500 * Math.pow(2, data.G)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.G)); },
-			onBuy: function(data:Dynamic) { data.F -= (500 * Math.pow(2, data.G)); data.G++; }
+			costString: function(data:Dynamic) { return "Upgrade your Goat Farm with " + formatBigNum(150 * Math.pow(5, data.G)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.F >= (150 * Math.pow(5, data.G)); },
+			onBuy: function(data:Dynamic) { data.F -= (150 * Math.pow(5, data.G)); data.G++; }
 		},
 		"P"=> {
 			infoString: function(data:Dynamic) { return "Puppies attract more Living to the area. People love puppies!"; },
 			rateString: function(data:Dynamic) { return formatBigNum(data.multiplierL) + "x Living attracted"; },
-			costString: function(data:Dynamic) { return "Upgrade your Goat Farm with " + formatBigNum(500 * Math.pow(2, data.P)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.F >= (500 * Math.pow(2, data.P)); },
-			onBuy: function(data:Dynamic) { data.F -= (500 * Math.pow(2, data.P)); data.P++; }
+			costString: function(data:Dynamic) { return "Get more puppies with " + formatBigNum(150 * Math.pow(5, data.P)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.F >= (150 * Math.pow(5, data.P)); },
+			onBuy: function(data:Dynamic) { data.F -= (150 * Math.pow(5, data.P)); data.P++; }
 		},
 	];
 	public static function infoString(data:Dynamic, propertyName:String) : String {

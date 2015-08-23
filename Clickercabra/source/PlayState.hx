@@ -23,8 +23,8 @@ class PlayState extends FlxState
 	var background:FlxSprite;
 
 	public static inline var SKY_HEIGHT = 60;
-	public static inline var DAY_LENGTH = 60;
-	public static inline var NIGHT_LENGTH = 20;
+	public static inline var DAY_LENGTH = 30;
+	public static inline var NIGHT_LENGTH = 10;
 	public static inline var SKY_LERP_STEPS = 100;
 	var skyBackground:FlxSprite;
 	var skyDarkening:FlxSprite;
@@ -227,22 +227,22 @@ class PlayState extends FlxState
 			var sprite = new FlxSprite(0, 0);
 			sprite.loadGraphic("assets/images/button.png");
 			livingClickable = new ClickableItem(
-				8, 90,
+				10, 90,
 				sprite, 0xFF0FE504, 0xFF0AD100, 0xFF079700, 0.0,
 				save.data, "L"
 			);
 			deadClickable = new ClickableItem(
-				8, 140,
+				10, 146,
 				sprite, 0xFFFD0000, 0xFFCB0404, 0xFF7A0303, 0.0,
 				save.data, "D"
 			);
 			fleshClickable = new ClickableItem(
-				8, 190,
+				10, 196,
 				sprite, 0xFFC44A00, 0xFFC44A00, 0xFFC44A00, 0.0,
 				save.data, "F"
 			);
 			diamondClickable = new ClickableItem(
-				8, 240,
+				10, 246,
 				sprite, 0xFF00F3E5, 0xFF00F3E5, 0xFF00F3E5, 0.0,
 				save.data, "Z"
 			);
