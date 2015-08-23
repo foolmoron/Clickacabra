@@ -47,6 +47,18 @@ class PlayState extends FlxState
 	var gText:DataText<Float>;
 	var pText:DataText<Float>;
 
+	var lButton:Dynamic = { prop: "L" };
+	var dButton:Dynamic = { prop: "D" };
+	var fButton:Dynamic = { prop: "F" };
+	var zButton:Dynamic = { prop: "Z" };
+	var cButton:Dynamic = { prop: "C" };
+	var wButton:Dynamic = { prop: "W" };
+	var mButton:Dynamic = { prop: "M" };
+	var nButton:Dynamic = { prop: "N" };
+	var gButton:Dynamic = { prop: "G" };
+	var pButton:Dynamic = { prop: "P" };
+	var buttons:Array<Dynamic>;
+
 	var testText:FlxText;
 	var b:Float = 0;
 
@@ -58,6 +70,8 @@ class PlayState extends FlxState
 		{
 			save.bind("clickacabra1");
 			time = save.data.timeInDay = Std.is(save.data.timeInDay, Float) ? save.data.timeInDay : time;
+			save.data.isDaytime = Std.is(save.data.isDaytime, Bool) ? save.data.isDaytime : save.data.timeInDay < DAY_LENGTH;
+			save.data.isNighttime = Std.is(save.data.isNighttime, Bool) ? save.data.isNighttime : !save.data.timeInDay;
 			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Chupaclicker.CONVERSION_INTERAL;
 			save.data.L = Std.is(save.data.L, Float) ? save.data.L : 0.0; // live people
 			save.data.D = Std.is(save.data.D, Float) ? save.data.D : 0.0; // dead people
@@ -99,10 +113,27 @@ class PlayState extends FlxState
 			var texts = [tidText, ticText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 			for (i in 0...texts.length) {
 				texts[i].x = 15;
-				texts[i].y = i * 15 + 80;
+				texts[i].y = i * 22 + 10;
 				texts[i].setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 1, 1);
 				texts[i].color = 0xFFFFFFFF;
 				add(texts[i]);
+			}
+		}
+		// set up buttons
+		{
+			dButton.button = new FlxButton(0, 0, "Dead", function() { Chupaclicker.attemptBuy(save.data, "D"); });
+			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Chupaclicker.attemptBuy(save.data, "C"); });
+			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Chupaclicker.attemptBuy(save.data, "W"); });
+			mButton.button = new FlxButton(0, 0, "Mother", function() { Chupaclicker.attemptBuy(save.data, "M"); });
+			nButton.button = new FlxButton(0, 0, "Nest", function() { Chupaclicker.attemptBuy(save.data, "N"); });
+			gButton.button = new FlxButton(0, 0, "Goat", function() { Chupaclicker.attemptBuy(save.data, "G"); });
+			pButton.button = new FlxButton(0, 0, "Puppy", function() { Chupaclicker.attemptBuy(save.data, "P"); });
+			buttons = [null, null, null, dButton, null, null, cButton, wButton, mButton, nButton, gButton, pButton];
+			for (i in 0...buttons.length) {
+				if (buttons[i] == null) continue;
+
+				buttons[i].button.x = 80;
+				buttons[i].button.y = i * 22 + 10;
 			}
 		}
 		// debug grid
@@ -121,7 +152,7 @@ class PlayState extends FlxState
 		}
 		// debug text
 		{
-			testText = new FlxText(75, 150, 0, null, 16);
+			testText = new FlxText(200, 250, 0, null, 16);
 			testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
 			testText.color = 0xFFFFFFFF;
 			add(testText);
@@ -140,16 +171,6 @@ class PlayState extends FlxState
 		var dt = FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
 		time += dt;
 
-		if (FlxG.mouse.justPressed) {
-			if (save.data.L > 1) {
-				save.data.D++;
-				save.data.L--;
-			}
-			if (FlxRandom.chanceRoll(5)) {
-				save.data.C++;
-			}
-		}
-
 		Chupaclicker.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
@@ -163,6 +184,24 @@ class PlayState extends FlxState
 		}
 		testText.text = "t=" + Std.int(time) + " b=" + Chupaclicker.formatBigNum(b);
 
+		if (FlxG.keys.pressed.P) {
+			time = save.data.timeInDay = 50;
+			save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
+			save.data.isNighttime = !save.data.timeInDay;
+			save.data.timeToConversion = Chupaclicker.CONVERSION_INTERAL;
+			save.data.L = 0.0;
+			save.data.D = 0.0;
+			save.data.F = 0.0;
+			save.data.Z = 0.0;
+			save.data.C = 0.0;
+			save.data.W = 0.0;
+			save.data.M = 0.0;
+			save.data.N = 0.0;
+			save.data.G = 0.0;
+			save.data.P = 0.0;
+			save.flush();
+		}
+
 		// do sky color interp
 		{
 			var percInDay = save.data.timeInDay / (DAY_LENGTH + NIGHT_LENGTH);
@@ -172,6 +211,18 @@ class PlayState extends FlxState
 			var firstColor = skyColors[colorIndex];
 			var secondColor = skyColors[(colorIndex + 1) % skyColors.length];
 			skyBackground.makeGraphic(FlxG.width, SKY_HEIGHT, FlxColorUtil.interpolateColor(firstColor, secondColor, SKY_LERP_STEPS, Std.int(interColorLerp*SKY_LERP_STEPS)));
+		}
+		// toggle buttons based on availability
+		{
+			for (i in 0...buttons.length) {
+				if (buttons[i] == null) continue;
+
+				if (Chupaclicker.canBuy(save.data, buttons[i].prop)) {
+					add(buttons[i].button);
+				} else {
+					remove(buttons[i].button);
+				}
+			}
 		}
 
 		save.flush();
