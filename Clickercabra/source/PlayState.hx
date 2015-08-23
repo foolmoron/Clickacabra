@@ -33,6 +33,7 @@ class PlayState extends FlxState
 		0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80,
 	];
 
+	var tidText:DataText<Int>;
 	var lText:DataText<Int>;
 	var dText:DataText<Int>;
 	var fText:DataText<Int>;
@@ -45,7 +46,7 @@ class PlayState extends FlxState
 	var pText:DataText<Int>;
 
 	var testText:FlxText;
-	var b:BigNum = new BigNum();
+	var b:Float = 0;
 
 	override public function create():Void
 	{
@@ -80,6 +81,7 @@ class PlayState extends FlxState
 		}
 		// set up texts
 		{
+			tidText = new DataText<Int>(save.data, "timeInDay", function(val) return "timeInDay=" + val);
 			lText = new DataText<Int>(save.data, "L", function(val) return "L=" + val);
 			dText = new DataText<Int>(save.data, "D", function(val) return "D=" + val);
 			fText = new DataText<Int>(save.data, "F", function(val) return "F=" + val);
@@ -90,7 +92,7 @@ class PlayState extends FlxState
 			nText = new DataText<Int>(save.data, "N", function(val) return "N=" + val);
 			gText = new DataText<Int>(save.data, "G", function(val) return "G=" + val);
 			pText = new DataText<Int>(save.data, "P", function(val) return "P=" + val);
-			var texts = [lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
+			var texts = [tidText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 			for (i in 0...texts.length) {
 				texts[i].x = 15;
 				texts[i].y = i * 15 + 80;
@@ -115,7 +117,7 @@ class PlayState extends FlxState
 		}
 		// debug text
 		{
-			testText = new FlxText(150, 150, 0, null, 16);
+			testText = new FlxText(75, 150, 0, null, 16);
 			testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
 			testText.color = 0xFFFFFFFF;
 			add(testText);
@@ -131,14 +133,21 @@ class PlayState extends FlxState
 
 	override public function update():Void
 	{
-		time += FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
-		save.data.timeInDay = time % (DAY_LENGTH + NIGHT_LENGTH);
+		var dt = FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
+		time += dt;
+
+		Chupaclicker.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
 		val *= FlxG.keys.pressed.T ? 100 : 1;
 		var sign = FlxG.keys.pressed.F ? -1 : 1;
-		b = b.addNum(val * sign);
-		testText.text = "t=" + Std.int(time) + " b=" + b.toString();
+		b = b + (val * sign);
+		if (FlxG.keys.pressed.Y) {
+			b *= 2;
+		} else if (FlxG.keys.pressed.U) {
+			b /= 2;
+		}
+		testText.text = "t=" + Std.int(time) + " b=" + Chupaclicker.formatBigNum(b);
 
 		// do sky color interp
 		{
