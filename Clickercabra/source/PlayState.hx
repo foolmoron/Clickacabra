@@ -9,6 +9,7 @@ import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
 import flixel.util.FlxMath;
 import flixel.util.FlxColorUtil;
+import flixel.util.FlxRandom;
 
 class PlayState extends FlxState
 {
@@ -33,17 +34,18 @@ class PlayState extends FlxState
 		0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80,
 	];
 
-	var tidText:DataText<Int>;
-	var lText:DataText<Int>;
-	var dText:DataText<Int>;
-	var fText:DataText<Int>;
-	var zText:DataText<Int>;
-	var cText:DataText<Int>;
-	var wText:DataText<Int>;
-	var mText:DataText<Int>;
-	var nText:DataText<Int>;
-	var gText:DataText<Int>;
-	var pText:DataText<Int>;
+	var tidText:DataText<Float>;
+	var ticText:DataText<Float>;
+	var lText:DataText<Float>;
+	var dText:DataText<Float>;
+	var fText:DataText<Float>;
+	var zText:DataText<Float>;
+	var cText:DataText<Float>;
+	var wText:DataText<Float>;
+	var mText:DataText<Float>;
+	var nText:DataText<Float>;
+	var gText:DataText<Float>;
+	var pText:DataText<Float>;
 
 	var testText:FlxText;
 	var b:Float = 0;
@@ -55,17 +57,18 @@ class PlayState extends FlxState
 		// set up save data
 		{
 			save.bind("clickacabra1");
-			time = Std.is(save.data.timeInDay, Float) ? save.data.timeInDay : time;
-			save.data.L = Std.is(save.data.L, Int) ? save.data.L : 0; // live people
-			save.data.D = Std.is(save.data.D, Int) ? save.data.D : 0; // dead people
-			save.data.F = Std.is(save.data.F, Int) ? save.data.F : 0; // flesh
-			save.data.Z = Std.is(save.data.Z, Int) ? save.data.Z : 0; // diamonds
-			save.data.C = Std.is(save.data.C, Int) ? save.data.C : 0; // chupacabras
-			save.data.W = Std.is(save.data.W, Int) ? save.data.W : 0; // daywalkers
-			save.data.M = Std.is(save.data.M, Int) ? save.data.M : 0; // mothers
-			save.data.N = Std.is(save.data.N, Int) ? save.data.N : 0; // nests
-			save.data.G = Std.is(save.data.G, Int) ? save.data.G : 0; // goats
-			save.data.P = Std.is(save.data.P, Int) ? save.data.P : 0; // puppies
+			time = save.data.timeInDay = Std.is(save.data.timeInDay, Float) ? save.data.timeInDay : time;
+			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Chupaclicker.CONVERSION_INTERAL;
+			save.data.L = Std.is(save.data.L, Float) ? save.data.L : 0.0; // live people
+			save.data.D = Std.is(save.data.D, Float) ? save.data.D : 0.0; // dead people
+			save.data.F = Std.is(save.data.F, Float) ? save.data.F : 0.0; // flesh
+			save.data.Z = Std.is(save.data.Z, Float) ? save.data.Z : 0.0; // diamonds
+			save.data.C = Std.is(save.data.C, Float) ? save.data.C : 0.0; // chupacabras
+			save.data.W = Std.is(save.data.W, Float) ? save.data.W : 0.0; // daywalkers
+			save.data.M = Std.is(save.data.M, Float) ? save.data.M : 0.0; // mothers
+			save.data.N = Std.is(save.data.N, Float) ? save.data.N : 0.0; // nests
+			save.data.G = Std.is(save.data.G, Float) ? save.data.G : 0.0; // goats
+			save.data.P = Std.is(save.data.P, Float) ? save.data.P : 0.0; // puppies
 			save.flush();
 		}
 		// make background
@@ -81,18 +84,19 @@ class PlayState extends FlxState
 		}
 		// set up texts
 		{
-			tidText = new DataText<Int>(save.data, "timeInDay", function(val) return "timeInDay=" + val);
-			lText = new DataText<Int>(save.data, "L", function(val) return "L=" + val);
-			dText = new DataText<Int>(save.data, "D", function(val) return "D=" + val);
-			fText = new DataText<Int>(save.data, "F", function(val) return "F=" + val);
-			zText = new DataText<Int>(save.data, "Z", function(val) return "Z=" + val);
-			cText = new DataText<Int>(save.data, "C", function(val) return "C=" + val);
-			wText = new DataText<Int>(save.data, "W", function(val) return "W=" + val);
-			mText = new DataText<Int>(save.data, "M", function(val) return "M=" + val);
-			nText = new DataText<Int>(save.data, "N", function(val) return "N=" + val);
-			gText = new DataText<Int>(save.data, "G", function(val) return "G=" + val);
-			pText = new DataText<Int>(save.data, "P", function(val) return "P=" + val);
-			var texts = [tidText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
+			tidText = new DataText<Float>(save.data, "timeInDay", function(val) return "timeInDay=" + val);
+			ticText = new DataText<Float>(save.data, "timeToConversion", function(val) return "timeToConversion=" + val);
+			lText = new DataText<Float>(save.data, "L", function(val) return "L=" + Chupaclicker.formatBigNum(val));
+			dText = new DataText<Float>(save.data, "D", function(val) return "D=" + Chupaclicker.formatBigNum(val));
+			fText = new DataText<Float>(save.data, "F", function(val) return "F=" + Chupaclicker.formatBigNum(val));
+			zText = new DataText<Float>(save.data, "Z", function(val) return "Z=" + Chupaclicker.formatBigNum(val));
+			cText = new DataText<Float>(save.data, "C", function(val) return "C=" + Chupaclicker.formatBigNum(val));
+			wText = new DataText<Float>(save.data, "W", function(val) return "W=" + Chupaclicker.formatBigNum(val));
+			mText = new DataText<Float>(save.data, "M", function(val) return "M=" + Chupaclicker.formatBigNum(val));
+			nText = new DataText<Float>(save.data, "N", function(val) return "N=" + Chupaclicker.formatBigNum(val));
+			gText = new DataText<Float>(save.data, "G", function(val) return "G=" + Chupaclicker.formatBigNum(val));
+			pText = new DataText<Float>(save.data, "P", function(val) return "P=" + Chupaclicker.formatBigNum(val));
+			var texts = [tidText, ticText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 			for (i in 0...texts.length) {
 				texts[i].x = 15;
 				texts[i].y = i * 15 + 80;
@@ -135,6 +139,16 @@ class PlayState extends FlxState
 	{
 		var dt = FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
 		time += dt;
+
+		if (FlxG.mouse.justPressed) {
+			if (save.data.L > 1) {
+				save.data.D++;
+				save.data.L--;
+			}
+			if (FlxRandom.chanceRoll(5)) {
+				save.data.C++;
+			}
+		}
 
 		Chupaclicker.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
