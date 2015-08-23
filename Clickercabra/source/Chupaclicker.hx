@@ -13,17 +13,20 @@ class Chupaclicker
 		"T",
 	];
 
-	public static function formatBigNum(bigNum:Float) : String {
+	public static function formatBigNum(bigNum:Float, decimalPlaces:Int = 2) : String {
 		if (bigNum < 0) return "0";
 
 		var expThousands = Std.int(Math.log(bigNum) / Math.log(1000));
 		var remainder = bigNum / Math.pow(1000, expThousands);
 		var wholePart = Std.int(remainder);
 		var fullDecimalString = "" + (remainder - wholePart);
-		var decimalPart = ".";
-		for (i in 0...2) {
-			decimalPart += (fullDecimalString.length > (2 + i)) ? fullDecimalString.charAt(i + 2) : "0";
-		}		
+		var decimalPart = "";
+		if (decimalPlaces > 0) {
+			decimalPart = ".";
+			for (i in 0...decimalPlaces) {
+				decimalPart += (fullDecimalString.length > (2 + i)) ? fullDecimalString.charAt(i + 2) : "0";
+			}
+		}
 		var suffix = (expThousands < SUFFIXES.length) ? SUFFIXES[expThousands] : "x10^" + (expThousands * 3);
 		return wholePart + decimalPart + suffix;
 	}
@@ -42,8 +45,8 @@ class Chupaclicker
 		data.multiplierDtoF = Math.pow(2, data.G); // each Goat doubles Chupacabra's harvesting of Flesh from Dead
 		data.multiplierL = Math.pow(2, data.P); // each Puppy doubles the amount Living coming to be killed by Daywalkers
 		data.rateL = 1.0 * data.multiplierL; // Living are attracted to the area per Daytime second
-		data.rateC = 1.0 * (data.M > 0) ? Math.pow(2, data.M) : 0; // Mothers spawn Chupacabras per second
-		data.rateW = 1.0 * (data.N > 0) ? Math.pow(2, data.N) : 0; // Nests spawn Daywalkers per second
+		data.rateC = 1.0 * ((data.M > 0) ? Math.pow(2, data.M) : 0); // Mothers spawn Chupacabras per second
+		data.rateW = 1.0 * ((data.N > 0) ? Math.pow(2, data.N) : 0); // Nests spawn Daywalkers per second
 		data.rateDtoF = 1.0 * data.C * data.multiplierDtoF; // Chupacabras turn Dead into Flesh per Nightime second
 		data.rateLtoD = 1.0 * data.W; // Daywalkers turn Living into Dead per Daytime second
 
