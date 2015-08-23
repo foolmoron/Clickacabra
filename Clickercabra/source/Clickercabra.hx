@@ -9,7 +9,7 @@ typedef PropertyFunctions = {
 	var onBuy: Dynamic->Void;
 }
 
-class Chupaclicker
+class Clickercabra
 {
 	public static var SUFFIXES = [
 		"",

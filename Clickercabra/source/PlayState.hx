@@ -101,7 +101,7 @@ class PlayState extends FlxState
 			time = save.data.timeInDay = Std.is(save.data.timeInDay, Float) ? save.data.timeInDay : time;
 			save.data.isDaytime = Std.is(save.data.isDaytime, Bool) ? save.data.isDaytime : save.data.timeInDay < DAY_LENGTH;
 			save.data.isNighttime = Std.is(save.data.isNighttime, Bool) ? save.data.isNighttime : !save.data.timeInDay;
-			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Chupaclicker.CONVERSION_INTERAL;
+			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Clickercabra.CONVERSION_INTERAL;
 			save.data.L = Std.is(save.data.L, Float) ? save.data.L : 0.0; // live people
 			save.data.D = Std.is(save.data.D, Float) ? save.data.D : 0.0; // dead people
 			save.data.F = Std.is(save.data.F, Float) ? save.data.F : 0.0; // flesh
@@ -207,82 +207,82 @@ class PlayState extends FlxState
 			livingClickable = new ClickableItem(
 				8, 90,
 				s.makeGraphic(32, 32, 0xFF0FE504), s.makeGraphic(32, 32, 0xFF0AD100), s.makeGraphic(32, 32, 0xFF079700),
-				function() return Chupaclicker.formatBigNum(save.data.L),
-				function() return Chupaclicker.rateString(save.data, "L"),
-				function() return Chupaclicker.infoString(save.data, "L"),
-				function() return Chupaclicker.costString(save.data, "L")
+				function() return Clickercabra.formatBigNum(save.data.L),
+				function() return Clickercabra.rateString(save.data, "L"),
+				function() return Clickercabra.infoString(save.data, "L"),
+				function() return Clickercabra.costString(save.data, "L")
 			);
 			deadClickable = new ClickableItem(
 				8, 140,
 				s.makeGraphic(32, 32, 0xFFFD0000), s.makeGraphic(32, 32, 0xFFCB0404), s.makeGraphic(32, 32, 0xFF7A0303),
-				function() return Chupaclicker.formatBigNum(save.data.D),
-				function() return Chupaclicker.rateString(save.data, "D"),
-				function() return Chupaclicker.infoString(save.data, "D"),
-				function() return Chupaclicker.costString(save.data, "D")
+				function() return Clickercabra.formatBigNum(save.data.D),
+				function() return Clickercabra.rateString(save.data, "D"),
+				function() return Clickercabra.infoString(save.data, "D"),
+				function() return Clickercabra.costString(save.data, "D")
 			);
 			fleshClickable = new ClickableItem(
 				8, 190,
 				s.makeGraphic(32, 32, 0xFFC44A00), s.makeGraphic(32, 32, 0xFFC44A00), s.makeGraphic(32, 32, 0xFFC44A00),
-				function() return Chupaclicker.formatBigNum(save.data.F),
-				function() return Chupaclicker.rateString(save.data, "F"),
-				function() return Chupaclicker.infoString(save.data, "F"),
-				function() return Chupaclicker.costString(save.data, "F")
+				function() return Clickercabra.formatBigNum(save.data.F),
+				function() return Clickercabra.rateString(save.data, "F"),
+				function() return Clickercabra.infoString(save.data, "F"),
+				function() return Clickercabra.costString(save.data, "F")
 			);
 			diamondClickable = new ClickableItem(
 				8, 240,
 				s.makeGraphic(32, 32, 0xFF00F3E5), s.makeGraphic(32, 32, 0xFF00F3E5), s.makeGraphic(32, 32, 0xFF00F3E5),
-				function() return Chupaclicker.formatBigNum(save.data.Z),
-				function() return Chupaclicker.rateString(save.data, "Z"),
-				function() return Chupaclicker.infoString(save.data, "Z"),
-				function() return Chupaclicker.costString(save.data, "Z")
+				function() return Clickercabra.formatBigNum(save.data.Z),
+				function() return Clickercabra.rateString(save.data, "Z"),
+				function() return Clickercabra.infoString(save.data, "Z"),
+				function() return Clickercabra.costString(save.data, "Z")
 			);
 			chupacabraClickable = new ClickableItem(
 				200, 90,
 				s.makeGraphic(32, 32, 0xFFA31B00), s.makeGraphic(32, 32, 0xFF831803), s.makeGraphic(32, 32, 0xFF5A1001),
-				function() return Chupaclicker.formatBigNum(save.data.C),
-				function() return Chupaclicker.rateString(save.data, "C"),
-				function() return Chupaclicker.infoString(save.data, "C"),
-				function() return Chupaclicker.costString(save.data, "C")
+				function() return Clickercabra.formatBigNum(save.data.C),
+				function() return Clickercabra.rateString(save.data, "C"),
+				function() return Clickercabra.infoString(save.data, "C"),
+				function() return Clickercabra.costString(save.data, "C")
 			);
 			daywalkerClickable = new ClickableItem(
 				380, 90,
 				s.makeGraphic(32, 32, 0xFF8207BB), s.makeGraphic(32, 32, 0xFF6E03A0), s.makeGraphic(32, 32, 0xFF4D0370),
-				function() return Chupaclicker.formatBigNum(save.data.W),
-				function() return Chupaclicker.rateString(save.data, "W"),
-				function() return Chupaclicker.infoString(save.data, "W"),
-				function() return Chupaclicker.costString(save.data, "W")
+				function() return Clickercabra.formatBigNum(save.data.W),
+				function() return Clickercabra.rateString(save.data, "W"),
+				function() return Clickercabra.infoString(save.data, "W"),
+				function() return Clickercabra.costString(save.data, "W")
 			);
 			motherClickable = new ClickableItem(
 				200, 160,
 				s.makeGraphic(32, 32, 0xFFD3D18F), s.makeGraphic(32, 32, 0xFFADAB6F), s.makeGraphic(32, 32, 0xFF7E7D55),
-				function() return Chupaclicker.formatBigNum(save.data.M),
-				function() return Chupaclicker.rateString(save.data, "M"),
-				function() return Chupaclicker.infoString(save.data, "M"),
-				function() return Chupaclicker.costString(save.data, "M")
+				function() return Clickercabra.formatBigNum(save.data.M),
+				function() return Clickercabra.rateString(save.data, "M"),
+				function() return Clickercabra.infoString(save.data, "M"),
+				function() return Clickercabra.costString(save.data, "M")
 			);
 			nestClickable = new ClickableItem(
 				380, 160,
 				s.makeGraphic(32, 32, 0xFFA2E066), s.makeGraphic(32, 32, 0xFF8BBF58), s.makeGraphic(32, 32, 0xFF699141),
-				function() return Chupaclicker.formatBigNum(save.data.N),
-				function() return Chupaclicker.rateString(save.data, "N"),
-				function() return Chupaclicker.infoString(save.data, "N"),
-				function() return Chupaclicker.costString(save.data, "N")
+				function() return Clickercabra.formatBigNum(save.data.N),
+				function() return Clickercabra.rateString(save.data, "N"),
+				function() return Clickercabra.infoString(save.data, "N"),
+				function() return Clickercabra.costString(save.data, "N")
 			);
 			goatClickable = new ClickableItem(
 				200, 230,
 				s.makeGraphic(32, 32, 0xFFBCBCBC), s.makeGraphic(32, 32, 0xFF9B9B9B), s.makeGraphic(32, 32, 0xFF606060),
-				function() return Chupaclicker.formatBigNum(save.data.G),
-				function() return Chupaclicker.rateString(save.data, "G"),
-				function() return Chupaclicker.infoString(save.data, "G"),
-				function() return Chupaclicker.costString(save.data, "G")
+				function() return Clickercabra.formatBigNum(save.data.G),
+				function() return Clickercabra.rateString(save.data, "G"),
+				function() return Clickercabra.infoString(save.data, "G"),
+				function() return Clickercabra.costString(save.data, "G")
 			);
 			puppyClickable = new ClickableItem(
 				380, 230,
 				s.makeGraphic(32, 32, 0xFFF9DD21), s.makeGraphic(32, 32, 0xFFDCC41F), s.makeGraphic(32, 32, 0xFFA4921A),
-				function() return Chupaclicker.formatBigNum(save.data.P),
-				function() return Chupaclicker.rateString(save.data, "P"),
-				function() return Chupaclicker.infoString(save.data, "P"),
-				function() return Chupaclicker.costString(save.data, "P")
+				function() return Clickercabra.formatBigNum(save.data.P),
+				function() return Clickercabra.rateString(save.data, "P"),
+				function() return Clickercabra.infoString(save.data, "P"),
+				function() return Clickercabra.costString(save.data, "P")
 			);
 			var clickables = [livingClickable, deadClickable, fleshClickable, diamondClickable, chupacabraClickable, daywalkerClickable, motherClickable, nestClickable, goatClickable, puppyClickable];
 			for (i in 0...clickables.length) {
@@ -293,16 +293,16 @@ class PlayState extends FlxState
 		// {
 		// 	tidText = new DataText<Float>(function() return save.data.timeInDay, function(val) return "timeInDay=" + val);
 		// 	ticText = new DataText<Float>(function() return save.data.timeToConversion, function(val) return "timeToConversion=" + val);
-		// 	lText = new DataText<Float>(function() return save.data.L, function(val) return "L=" + Chupaclicker.formatBigNum(val));
-		// 	dText = new DataText<Float>(function() return save.data.D, function(val) return "D=" + Chupaclicker.formatBigNum(val));
-		// 	fText = new DataText<Float>(function() return save.data.F, function(val) return "F=" + Chupaclicker.formatBigNum(val));
-		// 	zText = new DataText<Float>(function() return save.data.Z, function(val) return "Z=" + Chupaclicker.formatBigNum(val));
-		// 	cText = new DataText<Float>(function() return save.data.C, function(val) return "C=" + Chupaclicker.formatBigNum(val));
-		// 	wText = new DataText<Float>(function() return save.data.W, function(val) return "W=" + Chupaclicker.formatBigNum(val));
-		// 	mText = new DataText<Float>(function() return save.data.M, function(val) return "M=" + Chupaclicker.formatBigNum(val));
-		// 	nText = new DataText<Float>(function() return save.data.N, function(val) return "N=" + Chupaclicker.formatBigNum(val));
-		// 	gText = new DataText<Float>(function() return save.data.G, function(val) return "G=" + Chupaclicker.formatBigNum(val));
-		// 	pText = new DataText<Float>(function() return save.data.P, function(val) return "P=" + Chupaclicker.formatBigNum(val));
+		// 	lText = new DataText<Float>(function() return save.data.L, function(val) return "L=" + Clickercabra.formatBigNum(val));
+		// 	dText = new DataText<Float>(function() return save.data.D, function(val) return "D=" + Clickercabra.formatBigNum(val));
+		// 	fText = new DataText<Float>(function() return save.data.F, function(val) return "F=" + Clickercabra.formatBigNum(val));
+		// 	zText = new DataText<Float>(function() return save.data.Z, function(val) return "Z=" + Clickercabra.formatBigNum(val));
+		// 	cText = new DataText<Float>(function() return save.data.C, function(val) return "C=" + Clickercabra.formatBigNum(val));
+		// 	wText = new DataText<Float>(function() return save.data.W, function(val) return "W=" + Clickercabra.formatBigNum(val));
+		// 	mText = new DataText<Float>(function() return save.data.M, function(val) return "M=" + Clickercabra.formatBigNum(val));
+		// 	nText = new DataText<Float>(function() return save.data.N, function(val) return "N=" + Clickercabra.formatBigNum(val));
+		// 	gText = new DataText<Float>(function() return save.data.G, function(val) return "G=" + Clickercabra.formatBigNum(val));
+		// 	pText = new DataText<Float>(function() return save.data.P, function(val) return "P=" + Clickercabra.formatBigNum(val));
 		// 	var texts = [tidText, ticText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 		// 	for (i in 0...texts.length) {
 		// 		texts[i].x = 15;
@@ -314,13 +314,13 @@ class PlayState extends FlxState
 		// }
 		// set up buttons
 		{
-			dButton.button = new FlxButton(0, 0, "Dead", function() { Chupaclicker.attemptBuy(save.data, "D"); });
-			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Chupaclicker.attemptBuy(save.data, "C"); });
-			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Chupaclicker.attemptBuy(save.data, "W"); });
-			mButton.button = new FlxButton(0, 0, "Mother", function() { Chupaclicker.attemptBuy(save.data, "M"); });
-			nButton.button = new FlxButton(0, 0, "Nest", function() { Chupaclicker.attemptBuy(save.data, "N"); });
-			gButton.button = new FlxButton(0, 0, "Goat", function() { Chupaclicker.attemptBuy(save.data, "G"); });
-			pButton.button = new FlxButton(0, 0, "Puppy", function() { Chupaclicker.attemptBuy(save.data, "P"); });
+			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickercabra.attemptBuy(save.data, "D"); });
+			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickercabra.attemptBuy(save.data, "C"); });
+			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickercabra.attemptBuy(save.data, "W"); });
+			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickercabra.attemptBuy(save.data, "M"); });
+			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickercabra.attemptBuy(save.data, "N"); });
+			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickercabra.attemptBuy(save.data, "G"); });
+			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickercabra.attemptBuy(save.data, "P"); });
 			buttons = [null, null, null, dButton, null, null, cButton, wButton, mButton, nButton, gButton, pButton];
 			for (i in 0...buttons.length) {
 				if (buttons[i] == null) continue;
@@ -365,7 +365,7 @@ class PlayState extends FlxState
 		dt *= FlxG.keys.pressed.E ? 100 : 1;
 		time += dt;
 
-		Chupaclicker.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
+		Clickercabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
 		val *= FlxG.keys.pressed.T ? 100 : 1;
@@ -380,13 +380,13 @@ class PlayState extends FlxState
 			save.data.P++;
 			save.data.W = save.data.C = save.data.L;
 		}
-		testText.text = "t=" + Std.int(time) + " b=" + Chupaclicker.formatBigNum(b);
+		testText.text = "t=" + Std.int(time) + " b=" + Clickercabra.formatBigNum(b);
 
 		if (FlxG.keys.pressed.P) {
 			time = save.data.timeInDay = 50;
 			save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
 			save.data.isNighttime = !save.data.timeInDay;
-			save.data.timeToConversion = Chupaclicker.CONVERSION_INTERAL;
+			save.data.timeToConversion = Clickercabra.CONVERSION_INTERAL;
 			save.data.L = 0.0;
 			save.data.D = 0.0;
 			save.data.F = 0.0;
@@ -421,7 +421,7 @@ class PlayState extends FlxState
 			for (i in 0...0){//buttons.length) {
 				if (buttons[i] == null) continue;
 
-				if (Chupaclicker.canBuy(save.data, buttons[i].prop)) {
+				if (Clickercabra.canBuy(save.data, buttons[i].prop)) {
 					add(buttons[i].button);
 				} else {
 					remove(buttons[i].button);
