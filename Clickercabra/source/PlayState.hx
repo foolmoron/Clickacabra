@@ -106,7 +106,7 @@ class PlayState extends FlxState
 			time = save.data.timeInDay = Std.is(save.data.timeInDay, Float) ? save.data.timeInDay : time;
 			save.data.isDaytime = Std.is(save.data.isDaytime, Bool) ? save.data.isDaytime : save.data.timeInDay < DAY_LENGTH;
 			save.data.isNighttime = Std.is(save.data.isNighttime, Bool) ? save.data.isNighttime : !save.data.timeInDay;
-			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Clickercabra.CONVERSION_INTERAL;
+			save.data.timeToConversion = Std.is(save.data.timeToConversion, Float) ? save.data.timeToConversion : Clickacabra.CONVERSION_INTERAL;
 			save.data.L = Std.is(save.data.L, Float) ? save.data.L : 0.0; // live people
 			save.data.D = Std.is(save.data.D, Float) ? save.data.D : 0.0; // dead people
 			save.data.F = Std.is(save.data.F, Float) ? save.data.F : 0.0; // flesh
@@ -285,16 +285,16 @@ class PlayState extends FlxState
 		// {
 		// 	tidText = new DataText<Float>(function() return save.data.timeInDay, function(val) return "timeInDay=" + val);
 		// 	ticText = new DataText<Float>(function() return save.data.timeToConversion, function(val) return "timeToConversion=" + val);
-		// 	lText = new DataText<Float>(function() return save.data.L, function(val) return "L=" + Clickercabra.formatBigNum(val));
-		// 	dText = new DataText<Float>(function() return save.data.D, function(val) return "D=" + Clickercabra.formatBigNum(val));
-		// 	fText = new DataText<Float>(function() return save.data.F, function(val) return "F=" + Clickercabra.formatBigNum(val));
-		// 	zText = new DataText<Float>(function() return save.data.Z, function(val) return "Z=" + Clickercabra.formatBigNum(val));
-		// 	cText = new DataText<Float>(function() return save.data.C, function(val) return "C=" + Clickercabra.formatBigNum(val));
-		// 	wText = new DataText<Float>(function() return save.data.W, function(val) return "W=" + Clickercabra.formatBigNum(val));
-		// 	mText = new DataText<Float>(function() return save.data.M, function(val) return "M=" + Clickercabra.formatBigNum(val));
-		// 	nText = new DataText<Float>(function() return save.data.N, function(val) return "N=" + Clickercabra.formatBigNum(val));
-		// 	gText = new DataText<Float>(function() return save.data.G, function(val) return "G=" + Clickercabra.formatBigNum(val));
-		// 	pText = new DataText<Float>(function() return save.data.P, function(val) return "P=" + Clickercabra.formatBigNum(val));
+		// 	lText = new DataText<Float>(function() return save.data.L, function(val) return "L=" + Clickacabra.formatBigNum(val));
+		// 	dText = new DataText<Float>(function() return save.data.D, function(val) return "D=" + Clickacabra.formatBigNum(val));
+		// 	fText = new DataText<Float>(function() return save.data.F, function(val) return "F=" + Clickacabra.formatBigNum(val));
+		// 	zText = new DataText<Float>(function() return save.data.Z, function(val) return "Z=" + Clickacabra.formatBigNum(val));
+		// 	cText = new DataText<Float>(function() return save.data.C, function(val) return "C=" + Clickacabra.formatBigNum(val));
+		// 	wText = new DataText<Float>(function() return save.data.W, function(val) return "W=" + Clickacabra.formatBigNum(val));
+		// 	mText = new DataText<Float>(function() return save.data.M, function(val) return "M=" + Clickacabra.formatBigNum(val));
+		// 	nText = new DataText<Float>(function() return save.data.N, function(val) return "N=" + Clickacabra.formatBigNum(val));
+		// 	gText = new DataText<Float>(function() return save.data.G, function(val) return "G=" + Clickacabra.formatBigNum(val));
+		// 	pText = new DataText<Float>(function() return save.data.P, function(val) return "P=" + Clickacabra.formatBigNum(val));
 		// 	var texts = [tidText, ticText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 		// 	for (i in 0...texts.length) {
 		// 		texts[i].x = 15;
@@ -306,13 +306,13 @@ class PlayState extends FlxState
 		// }
 		// set up buttons
 		{
-			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickercabra.doBuy(save.data, "D"); });
-			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickercabra.doBuy(save.data, "C"); });
-			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickercabra.doBuy(save.data, "W"); });
-			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickercabra.doBuy(save.data, "M"); });
-			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickercabra.doBuy(save.data, "N"); });
-			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickercabra.doBuy(save.data, "G"); });
-			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickercabra.doBuy(save.data, "P"); });
+			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickacabra.doBuy(save.data, "D"); });
+			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickacabra.doBuy(save.data, "C"); });
+			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickacabra.doBuy(save.data, "W"); });
+			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickacabra.doBuy(save.data, "M"); });
+			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickacabra.doBuy(save.data, "N"); });
+			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickacabra.doBuy(save.data, "G"); });
+			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickacabra.doBuy(save.data, "P"); });
 			buttons = [null, null, null, dButton, null, null, cButton, wButton, mButton, nButton, gButton, pButton];
 			for (i in 0...buttons.length) {
 				if (buttons[i] == null) continue;
@@ -357,7 +357,7 @@ class PlayState extends FlxState
 		dt *= FlxG.keys.pressed.E ? 100 : 1;
 		time += dt;
 
-		Clickercabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
+		Clickacabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
 		val *= FlxG.keys.pressed.T ? 100 : 1;
@@ -372,13 +372,13 @@ class PlayState extends FlxState
 			save.data.P++;
 			save.data.W = save.data.C = save.data.L;
 		}
-		testText.text = "t=" + Std.int(time) + " b=" + Clickercabra.formatBigNum(b);
+		testText.text = "t=" + Std.int(time) + " b=" + Clickacabra.formatBigNum(b);
 
 		if (FlxG.keys.pressed.P) {
 			time = save.data.timeInDay = 50;
 			save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
 			save.data.isNighttime = !save.data.timeInDay;
-			save.data.timeToConversion = Clickercabra.CONVERSION_INTERAL;
+			save.data.timeToConversion = Clickacabra.CONVERSION_INTERAL;
 			save.data.L = 0.0;
 			save.data.D = 0.0;
 			save.data.F = 0.0;
@@ -413,7 +413,7 @@ class PlayState extends FlxState
 			for (i in 0...0){//buttons.length) {
 				if (buttons[i] == null) continue;
 
-				if (Clickercabra.canBuy(save.data, buttons[i].prop)) {
+				if (Clickacabra.canBuy(save.data, buttons[i].prop)) {
 					add(buttons[i].button);
 				} else {
 					remove(buttons[i].button);

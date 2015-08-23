@@ -74,7 +74,7 @@ class ClickableItem extends FlxGroup
             layerLow.remove(normalSprite);
             layerLow.add(hoverSprite);
             layerLow.remove(clickSprite);
-            Clickercabra.doBuy(dataObj, propertyName);
+            Clickacabra.doBuy(dataObj, propertyName);
           }
           layerTop.remove(popupBG);
           layerTop.remove(infoText);
@@ -144,7 +144,7 @@ class ClickableItem extends FlxGroup
       countText.x = x + 40;
       countText.y = y + 4;
       rateText.x = x - 4;
-      rateText.y = y + 32;
+      rateText.y = y + 34;
 
       popupBG.x = x + 18;
       popupBG.y = y - 86;
@@ -154,7 +154,7 @@ class ClickableItem extends FlxGroup
     }
     // update sprite buyable
     {
-      buyable = Clickercabra.canBuy(dataObj, propertyName);
+      buyable = Clickacabra.canBuy(dataObj, propertyName);
       if (buyable) {
         layerMedium.remove(cantbuySprite);  
       } else {
@@ -163,10 +163,10 @@ class ClickableItem extends FlxGroup
     }
     // update texts
     {
-      countText.text = Clickercabra.formatBigNum(Reflect.field(dataObj, propertyName));
-      rateText.text = Clickercabra.rateString(dataObj, propertyName);
-      infoText.text = Clickercabra.infoString(dataObj, propertyName);
-      costText.text = Clickercabra.costString(dataObj, propertyName);
+      countText.text = Clickacabra.formatBigNum(Reflect.field(dataObj, propertyName));
+      rateText.text = Clickacabra.rateString(dataObj, propertyName);
+      infoText.text = Clickacabra.infoString(dataObj, propertyName);
+      costText.text = Clickacabra.costString(dataObj, propertyName);
     }
     super.update();
   }
