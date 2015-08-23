@@ -94,6 +94,8 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		FlxG.autoPause = false; // it's an idler, so let it always play
+		FlxG.plugins.add(new flixel.plugin.MouseEventManager());
+		FlxG.debugger.drawDebug = false;
 
 		// set up save data
 		{

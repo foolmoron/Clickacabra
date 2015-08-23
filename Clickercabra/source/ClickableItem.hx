@@ -1,9 +1,11 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.group.FlxGroup;
+import flixel.plugin.MouseEventManager;
 
 class ClickableItem extends FlxGroup
 {
@@ -11,6 +13,7 @@ class ClickableItem extends FlxGroup
   public var x:Float;
   public var y:Float;
 
+  public var spriteHitbox:FlxObject;
   public var normalSprite:FlxSprite;
   public var hoverSprite:FlxSprite;
   public var clickSprite:FlxSprite;
@@ -43,7 +46,47 @@ class ClickableItem extends FlxGroup
     this.infoStringGenerator = infoStringGenerator;
     this.costStringGenerator = costStringGenerator;
 
-
+    // mouse events
+    {
+      spriteHitbox = new FlxObject(0, 0, 32, 32);
+      MouseEventManager.add(
+        spriteHitbox,
+        function(downObj) {
+          remove(normalSprite);
+          remove(hoverSprite);
+          add(clickSprite);
+          remove(popupBG);
+          remove(infoText);
+          remove(costText);
+        },
+        function(upObj) {
+          remove(normalSprite);
+          add(hoverSprite);
+          remove(clickSprite);
+          remove(popupBG);
+          remove(infoText);
+          remove(costText);
+          //attempt buy
+        },
+        function(overObj) {
+          remove(normalSprite);
+          add(hoverSprite);
+          remove(clickSprite);
+          add(popupBG);
+          add(infoText);
+          add(costText);
+        },
+        function(outObj) {
+          add(normalSprite);
+          remove(hoverSprite);
+          remove(clickSprite);
+          remove(popupBG);
+          remove(infoText);
+          remove(costText);
+        }
+      );
+      add(spriteHitbox);
+    }
     // make display texts
     {
       countText = new FlxText(0, 0);
@@ -58,16 +101,17 @@ class ClickableItem extends FlxGroup
     // make info popup
     {
       popupBG = new FlxSprite(0, 0);
-      infoText = new FlxText(0, 0);
-      costText = new FlxText(0, 0);
+      popupBG.loadGraphic("assets/images/popup.png");
+      infoText = new FlxText(0, 0, 120, null, 8);
+      infoText.color = 0xFF000000;
+      costText = new FlxText(0, 0, 120, null, 8);
+      costText.color = 0xFF000000;
     }
     // add stuff
     {
+      add(normalSprite);
       add(countText);
       add(rateText);
-      add(popupBG);
-      add(infoText);
-      add(costText);
     }
   }
 
@@ -75,19 +119,19 @@ class ClickableItem extends FlxGroup
   {
     // TODO: position things on item position
     {
-      normalSprite.x = hoverSprite.x = clickSprite.x = x + 0;
-      normalSprite.y = hoverSprite.y = clickSprite.y = y + 0;
+      spriteHitbox.x = normalSprite.x = hoverSprite.x = clickSprite.x = x + 0;
+      spriteHitbox.y = normalSprite.y = hoverSprite.y = clickSprite.y = y + 0;
 
       countText.x = x + 40;
       countText.y = y + 4;
       rateText.x = x - 4;
       rateText.y = y + 32;
 
-      popupBG.x = x + 0;
-      popupBG.y = y + 0;
-      infoText.x = costText.x = x + 0;
-      infoText.y = y + 0;
-      costText.y = y + 0;
+      popupBG.x = x + 18;
+      popupBG.y = y - 86;
+      infoText.x = costText.x = x + 24;
+      infoText.y = y - 82;
+      costText.y = y - 23;
     }
     // update texts
     {
@@ -95,18 +139,6 @@ class ClickableItem extends FlxGroup
       rateText.text = rateStringGenerator();
       infoText.text = infoStringGenerator();
       costText.text = costStringGenerator();
-    }
-    // TODO: show correct sprite based on mouse state
-    {
-      add(normalSprite);
-      remove(hoverSprite);
-      remove(clickSprite);
-    }
-    // TODO: show popup based on mouse state
-    {
-      remove(popupBG);
-      remove(infoText);
-      remove(costText);
     }
     super.update();
   }

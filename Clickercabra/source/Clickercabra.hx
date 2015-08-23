@@ -100,14 +100,14 @@ class Clickercabra
 		"L"=> {
 			infoString: function(data:Dynamic) { return "Living people are attracted to this the legend of the Chupacabra in this field. Click to kill them!"; },
 			rateString: null,
-			costString: function(data:Dynamic) { return "Click to kill Livingpeople during Daytime!"; },
+			costString: function(data:Dynamic) { return "Click to kill Living people during Daytime!"; },
 			canBuy: null,
 			onBuy: null,
 		},
 		"D"=> {
 			infoString: function(data:Dynamic) { return "During Daytime, Living people can be killed with clicks or Daywalkers. What a shame."; },
 			rateString: null,
-			costString: function(data:Dynamic) { return "Click to kill Livingpeople during Daytime!"; },
+			costString: function(data:Dynamic) { return "Click to kill Living people during Daytime!"; },
 			canBuy: function(data:Dynamic) { return data.L >= 1 && data.isDaytime; },
 			onBuy: function(data:Dynamic) { data.L--; data.D++; }
 		},
