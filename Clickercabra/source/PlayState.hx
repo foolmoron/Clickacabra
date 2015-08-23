@@ -183,6 +183,9 @@ class PlayState extends FlxState
 		} else if (FlxG.keys.pressed.U) {
 			b /= 2;
 		}
+		if (FlxG.keys.pressed.W) {
+			save.data.W++;
+		}
 		testText.text = "t=" + Std.int(time) + " b=" + Chupaclicker.formatBigNum(b);
 
 		if (FlxG.keys.pressed.P) {

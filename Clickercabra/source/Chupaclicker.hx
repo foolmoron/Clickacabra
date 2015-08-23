@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.util.FlxRandom;
 
 typedef PropertyFunctions = {
 	var canBuy : Dynamic->Bool;
@@ -31,7 +32,7 @@ class Chupaclicker
 				decimalPart += (fullDecimalString.length > (2 + i)) ? fullDecimalString.charAt(i + 2) : "0";
 			}
 		}
-		var suffix = (expThousands < SUFFIXES.length) ? SUFFIXES[expThousands] : "x10^" + (expThousands * 3);
+		var suffix = (expThousands >= 0 && expThousands < SUFFIXES.length) ? SUFFIXES[expThousands] : "x10^" + (expThousands * 3);
 		return wholePart + decimalPart + suffix;
 	}
 
@@ -64,12 +65,13 @@ class Chupaclicker
 		data.W += data.rateW * dt;
 
 		// convert stuff at an interval so the player can see numbers going up and down
+		var livingKilled = 0.0;
 		data.timeToConversion -= dt;
 		if (data.timeToConversion < 0) {
 			data.timeToConversion = CONVERSION_INTERAL;
 			dt = CONVERSION_INTERAL;
 			if (data.isDaytime) {
-				var LtoD = Math.min(data.rateLtoD * dt, data.L);
+				var LtoD = livingKilled = Math.min(data.rateLtoD * dt, data.L);
 				data.D += LtoD;
 				data.L -= LtoD;
 			}
@@ -77,6 +79,19 @@ class Chupaclicker
 				var DtoF = Math.min(data.rateDtoF * dt, data.D);
 				data.F += DtoF;
 				data.D -= DtoF;
+			}
+
+			// generate diamonds based on number of people killed
+			var diamondsToGenerate = livingKilled * 0.0001;
+			var remainder = diamondsToGenerate % 1;
+			var fullDiamonds = diamondsToGenerate - remainder;
+			if (fullDiamonds >= 1) {
+				data.Z += fullDiamonds;
+			}
+			if (remainder > 0.01) {
+				if (FlxRandom.chanceRoll(remainder * 100)) {
+					data.Z++;
+				}
 			}
 		}
 	}
