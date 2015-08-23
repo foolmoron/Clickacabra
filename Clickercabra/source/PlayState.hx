@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.group.FlxGroup;
+import flixel.group.FlxTypedGroup;
 import flixel.ui.FlxButton;
 import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
@@ -33,6 +35,21 @@ class PlayState extends FlxState
 		// night
 		0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80, 0xFF4D2C80,
 	];
+
+	var everythingGroup = new FlxTypedGroup<FlxSprite>();
+
+	var peopleGroup = new FlxTypedGroup<FlxTypedGroup<FlxSprite>>();
+	var livingGroup = new FlxTypedGroup<FlxSprite>();
+	var deadGroup = new FlxTypedGroup<FlxSprite>();
+
+	var monsterGroup = new FlxTypedGroup<FlxTypedGroup<FlxSprite>>();
+	var chupacabraGroup = new FlxTypedGroup<FlxSprite>();
+	var daywalkerGroup = new FlxTypedGroup<FlxSprite>();
+	
+	var itemGroup = new FlxTypedGroup<FlxTypedGroup<FlxSprite>>();
+	var goatGroup = new FlxTypedGroup<FlxSprite>();
+	var puppyGroup = new FlxTypedGroup<FlxSprite>();
+	var diamondGroup = new FlxTypedGroup<FlxSprite>();
 
 	var tidText:DataText<Float>;
 	var ticText:DataText<Float>;
@@ -95,6 +112,77 @@ class PlayState extends FlxState
 		{
 			skyBackground = new FlxSprite(0, 0);
 			add(skyBackground);
+		}
+		// set up sprite groups
+		{
+			peopleGroup.add(livingGroup);
+			peopleGroup.add(deadGroup);
+			for (i in 0...20) {
+				var living = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				living.makeGraphic(10, 20, 0xFF00FF00);
+				living.offset.y = 20;
+				livingGroup.add(living);
+				everythingGroup.add(living);
+
+				var dead = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				dead.makeGraphic(20, 10, 0xFFFF0000);
+				dead.offset.y = 10;
+				deadGroup.add(dead);
+				everythingGroup.add(dead);
+			}
+			add(peopleGroup);
+
+			monsterGroup.add(chupacabraGroup);
+			monsterGroup.add(daywalkerGroup);
+			for (i in 0...10) {
+				var chupacabra = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				chupacabra.makeGraphic(20, 30, 0xFF5C5400);
+				chupacabra.offset.y = 30;
+				chupacabraGroup.add(chupacabra);
+				everythingGroup.add(chupacabra);
+
+				var daywalker = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				daywalker.makeGraphic(30, 40, 0xFF4F0D93);
+				daywalker.offset.y = 40;
+				daywalkerGroup.add(daywalker);
+				everythingGroup.add(daywalker);
+			}
+			add(monsterGroup);
+	
+			itemGroup.add(goatGroup);
+			itemGroup.add(puppyGroup);
+			itemGroup.add(diamondGroup);
+			for (i in 0...10) {
+				var goat = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				goat.makeGraphic(15, 8, 0xFF878787);
+				goat.offset.y = 8;
+				goatGroup.add(goat);
+				everythingGroup.add(goat);
+
+				var puppy = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				puppy.makeGraphic(15, 8, 0xFFDBC905);
+				puppy.offset.y = 8;
+				puppyGroup.add(puppy);
+				everythingGroup.add(puppy);
+			}
+			for (i in 0...30) {
+				var diamond = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
+				diamond.makeGraphic(5, 5, 0xFF06FBA7);
+				diamond.offset.y = 5;
+				diamondGroup.add(diamond);
+				everythingGroup.add(diamond);
+			}
+			add(itemGroup);
+
+			everythingGroup.forEach(function(sprite) {
+				sprite.acceleration.y = 100;
+				sprite.velocity.x = FlxRandom.chanceRoll() ? 50 : -50;
+				sprite.velocity.x = FlxRandom.chanceRoll() ? sprite.velocity.x * 1.5 : sprite.velocity.x;
+				sprite.velocity.x = FlxRandom.chanceRoll() ? sprite.velocity.x * 1.5 : sprite.velocity.x;
+				sprite.maxVelocity.y = 500;
+				sprite.maxVelocity.x = 200;
+				sprite.health = FlxRandom.floatRanged(0, 5);
+			});
 		}
 		// set up texts
 		{
@@ -231,5 +319,25 @@ class PlayState extends FlxState
 
 		save.flush();
 		super.update();
+		// do physics stuff after parent updates entities
+
+		// keep sprites in the play area
+		{
+			everythingGroup.forEach(function(sprite) {
+				if (sprite.x < 0) {
+					sprite.velocity.x = Math.abs(sprite.velocity.x);
+				} else if (sprite.x > FlxG.width) {
+					sprite.velocity.x = -Math.abs(sprite.velocity.x);
+				}
+				if (sprite.y > SKY_HEIGHT) {
+					sprite.y = SKY_HEIGHT;
+					sprite.health -= FlxG.elapsed;
+					if (sprite.health < 0) {
+						sprite.velocity.y = -25 * FlxRandom.floatRanged(1, 5);
+						sprite.health = FlxRandom.floatRanged(0, 5);
+					}
+				}
+			});
+		}
 	}	
 }
