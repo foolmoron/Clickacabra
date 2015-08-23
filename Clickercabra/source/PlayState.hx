@@ -100,16 +100,16 @@ class PlayState extends FlxState
 		{
 			tidText = new DataText<Float>(save.data, "timeInDay", function(val) return "timeInDay=" + val);
 			ticText = new DataText<Float>(save.data, "timeToConversion", function(val) return "timeToConversion=" + val);
-			lText = new DataText<Float>(save.data, "L", function(val) return "L=" + Chupaclicker.formatBigNum(val, 0));
-			dText = new DataText<Float>(save.data, "D", function(val) return "D=" + Chupaclicker.formatBigNum(val, 0));
-			fText = new DataText<Float>(save.data, "F", function(val) return "F=" + Chupaclicker.formatBigNum(val, 0));
-			zText = new DataText<Float>(save.data, "Z", function(val) return "Z=" + Chupaclicker.formatBigNum(val, 0));
-			cText = new DataText<Float>(save.data, "C", function(val) return "C=" + Chupaclicker.formatBigNum(val, 0));
-			wText = new DataText<Float>(save.data, "W", function(val) return "W=" + Chupaclicker.formatBigNum(val, 0));
-			mText = new DataText<Float>(save.data, "M", function(val) return "M=" + Chupaclicker.formatBigNum(val, 0));
-			nText = new DataText<Float>(save.data, "N", function(val) return "N=" + Chupaclicker.formatBigNum(val, 0));
-			gText = new DataText<Float>(save.data, "G", function(val) return "G=" + Chupaclicker.formatBigNum(val, 0));
-			pText = new DataText<Float>(save.data, "P", function(val) return "P=" + Chupaclicker.formatBigNum(val, 0));
+			lText = new DataText<Float>(save.data, "L", function(val) return "L=" + Chupaclicker.formatBigNum(val));
+			dText = new DataText<Float>(save.data, "D", function(val) return "D=" + Chupaclicker.formatBigNum(val));
+			fText = new DataText<Float>(save.data, "F", function(val) return "F=" + Chupaclicker.formatBigNum(val));
+			zText = new DataText<Float>(save.data, "Z", function(val) return "Z=" + Chupaclicker.formatBigNum(val));
+			cText = new DataText<Float>(save.data, "C", function(val) return "C=" + Chupaclicker.formatBigNum(val));
+			wText = new DataText<Float>(save.data, "W", function(val) return "W=" + Chupaclicker.formatBigNum(val));
+			mText = new DataText<Float>(save.data, "M", function(val) return "M=" + Chupaclicker.formatBigNum(val));
+			nText = new DataText<Float>(save.data, "N", function(val) return "N=" + Chupaclicker.formatBigNum(val));
+			gText = new DataText<Float>(save.data, "G", function(val) return "G=" + Chupaclicker.formatBigNum(val));
+			pText = new DataText<Float>(save.data, "P", function(val) return "P=" + Chupaclicker.formatBigNum(val));
 			var texts = [tidText, ticText, lText, dText, fText, zText, cText, wText, mText, nText, gText, pText];
 			for (i in 0...texts.length) {
 				texts[i].x = 15;
@@ -169,6 +169,7 @@ class PlayState extends FlxState
 	override public function update():Void
 	{
 		var dt = FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
+		dt *= FlxG.keys.pressed.E ? 100 : 1;
 		time += dt;
 
 		Chupaclicker.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
