@@ -14,6 +14,7 @@ import flixel.util.FlxMath;
 import flixel.util.FlxColorUtil;
 import flixel.util.FlxRandom;
 import flixel.plugin.MouseEventManager;
+import flixel.system.FlxSound;
 
 class PlayState extends FlxState
 {
@@ -93,6 +94,9 @@ class PlayState extends FlxState
 	var gButton:Dynamic = { prop: "G" };
 	var pButton:Dynamic = { prop: "P" };
 	var buttons:Array<Dynamic>;
+
+	var dayMusic:FlxSound;
+	var nightMusic:FlxSound;
 
 	var testText:FlxText;
 	var b:Float = 0;
@@ -314,6 +318,11 @@ class PlayState extends FlxState
 				playing = true;
 			}
 		}
+		// music
+		{
+			dayMusic = FlxG.sound.play("assets/music/day.wav", 1, true);
+			nightMusic = FlxG.sound.play("assets/music/night.wav", 0, true);
+		}
 		// set up texts
 		// {
 		// 	tidText = new DataText<Float>(function() return save.data.timeInDay, function(val) return "timeInDay=" + val);
@@ -377,6 +386,8 @@ class PlayState extends FlxState
 			dt = 0;
 		time += dt;
 
+		var wasDay = save.data.isDaytime;
+		var wasNight = save.data.isNighttime;
 		Clickacabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
 		var val = FlxG.keys.pressed.G ? 921070 : 500;
@@ -413,6 +424,16 @@ class PlayState extends FlxState
 			flash.system.System.exit(0);
 		}
 
+		// do music fading based on daytime
+		{
+			if (save.data.isDaytime && !wasDay) {
+				dayMusic.fadeIn(1);
+				nightMusic.fadeOut(1);
+			} else if (save.data.isNighttime && !wasNight) {
+				dayMusic.fadeOut(1);
+				nightMusic.fadeIn(1);				
+			}
+		}
 		// do sky color interps
 		{
 			var percInDay = save.data.timeInDay / (DAY_LENGTH + NIGHT_LENGTH);
