@@ -41,6 +41,7 @@ class PlayState extends FlxState
 	];
 
 	var everythingGroup = new FlxTypedGroup<FlxSprite>();
+	public static inline var NUM_OF_EACH_ITEM = 30;
 
 	var peopleGroup = new FlxTypedGroup<FlxTypedGroup<FlxSprite>>();
 	var livingGroup = new FlxTypedGroup<FlxSprite>();
@@ -149,7 +150,7 @@ class PlayState extends FlxState
 		{
 			peopleGroup.add(livingGroup);
 			peopleGroup.add(deadGroup);
-			for (i in 0...20) {
+			for (i in 0...NUM_OF_EACH_ITEM) {
 				var living = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
 				living.makeGraphic(10, 20, 0xFF00FF00);
 				living.offset.y = 20;
@@ -157,8 +158,8 @@ class PlayState extends FlxState
 				everythingGroup.add(living);
 
 				var dead = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
-				dead.makeGraphic(20, 10, 0xFFFF0000);
-				dead.offset.y = 10;
+				dead.makeGraphic(12, 12, 0xFFFF0000);
+				dead.offset.y = 12;
 				deadGroup.add(dead);
 				everythingGroup.add(dead);
 			}
@@ -166,7 +167,7 @@ class PlayState extends FlxState
 
 			monsterGroup.add(chupacabraGroup);
 			monsterGroup.add(daywalkerGroup);
-			for (i in 0...10) {
+			for (i in 0...NUM_OF_EACH_ITEM) {
 				var chupacabra = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
 				chupacabra.makeGraphic(20, 30, 0xFF5C5400);
 				chupacabra.offset.y = 30;
@@ -184,7 +185,7 @@ class PlayState extends FlxState
 			itemGroup.add(goatGroup);
 			itemGroup.add(puppyGroup);
 			itemGroup.add(diamondGroup);
-			for (i in 0...10) {
+			for (i in 0...NUM_OF_EACH_ITEM) {
 				var goat = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
 				goat.makeGraphic(15, 8, 0xFF878787);
 				goat.offset.y = 8;
@@ -197,7 +198,7 @@ class PlayState extends FlxState
 				puppyGroup.add(puppy);
 				everythingGroup.add(puppy);
 			}
-			for (i in 0...30) {
+			for (i in 0...NUM_OF_EACH_ITEM) {
 				var diamond = new FlxSprite(FlxRandom.floatRanged(0, FlxG.width), 0);
 				diamond.makeGraphic(5, 5, 0xFF06FBA7);
 				diamond.offset.y = 5;
@@ -336,12 +337,12 @@ class PlayState extends FlxState
 		// 	}
 		// }
 		// debug text
-		{
-			testText = new FlxText(200, 250, 0, null, 16);
-			testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
-			testText.color = 0xFFFFFFFF;
-			// add(testText);
-		}
+		// {
+		// 	testText = new FlxText(200, 250, 0, null, 16);
+		// 	testText.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
+		// 	testText.color = 0xFFFFFFFF;
+		// 	add(testText);
+		// }
 
 		super.create();
 	}
@@ -353,7 +354,8 @@ class PlayState extends FlxState
 
 	override public function update():Void
 	{
-		var dt = FlxG.keys.pressed.R ? FlxG.elapsed * 20 : FlxG.elapsed;
+		var dt = FlxG.elapsed;
+		dt *= FlxG.keys.pressed.R ? 20 : 1;
 		dt *= FlxG.keys.pressed.E ? 100 : 1;
 		time += dt;
 
@@ -372,7 +374,7 @@ class PlayState extends FlxState
 			save.data.P++;
 			save.data.W = save.data.C = save.data.L;
 		}
-		testText.text = "t=" + Std.int(time) + " b=" + Clickacabra.formatBigNum(b);
+		// testText.text = "t=" + Std.int(time) + " b=" + Clickacabra.formatBigNum(b);
 
 		if (FlxG.keys.pressed.P) {
 			time = save.data.timeInDay = 50;
@@ -419,6 +421,39 @@ class PlayState extends FlxState
 					remove(buttons[i].button);
 				}
 			}
+		}
+		// toggle item sprites based on current numbers
+		{
+			var amountToEnable = 0;
+
+			amountToEnable = Std.int(Math.min(save.data.L, 10)) // one sprite per single, up to 10
+										 + Std.int(Math.min(save.data.L / 1000, 10)) // then one sprite per thousand, up to 10
+										 + Std.int(Math.min(save.data.L / 1000000, 10)); // then one sprite per million, up to 10
+			for (i in 0...NUM_OF_EACH_ITEM) livingGroup.members[i].visible = i < amountToEnable && save.data.isDaytime;
+			amountToEnable = Std.int(Math.min(save.data.D, 10))
+										 + Std.int(Math.min(save.data.D / 1000, 10))
+										 + Std.int(Math.min(save.data.D / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) deadGroup.members[i].visible = i < amountToEnable;
+			amountToEnable = Std.int(Math.min(save.data.C, 10))
+										 + Std.int(Math.min(save.data.C / 1000, 10))
+										 + Std.int(Math.min(save.data.C / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) chupacabraGroup.members[i].visible = i < amountToEnable && save.data.isNighttime;
+			amountToEnable = Std.int(Math.min(save.data.W, 10))
+										 + Std.int(Math.min(save.data.W / 1000, 10))
+										 + Std.int(Math.min(save.data.W / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) daywalkerGroup.members[i].visible = i < amountToEnable && save.data.isDaytime;
+			amountToEnable = Std.int(Math.min(save.data.G, 10))
+										 + Std.int(Math.min(save.data.G / 1000, 10))
+										 + Std.int(Math.min(save.data.G / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) goatGroup.members[i].visible = i < amountToEnable;
+			amountToEnable = Std.int(Math.min(save.data.P, 10))
+										 + Std.int(Math.min(save.data.P / 1000, 10))
+										 + Std.int(Math.min(save.data.P / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) puppyGroup.members[i].visible = i < amountToEnable;
+			amountToEnable = Std.int(Math.min(save.data.Z, 10))
+										 + Std.int(Math.min(save.data.Z / 1000, 10))
+										 + Std.int(Math.min(save.data.Z / 1000000, 10));
+			for (i in 0...NUM_OF_EACH_ITEM) diamondGroup.members[i].visible = i < amountToEnable;
 		}
 
 		save.flush();
