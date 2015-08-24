@@ -320,8 +320,8 @@ class PlayState extends FlxState
 		}
 		// music
 		{
-			dayMusic = FlxG.sound.play("assets/music/day.wav", 1, true);
-			nightMusic = FlxG.sound.play("assets/music/night.wav", 0, true);
+			// dayMusic = FlxG.sound.play("assets/music/day.wav", 1, true);
+			// nightMusic = FlxG.sound.play("assets/music/night.wav", 0, true);
 		}
 		// set up texts
 		// {
@@ -380,8 +380,8 @@ class PlayState extends FlxState
 	override public function update():Void
 	{
 		var dt = FlxG.elapsed;
-		dt *= FlxG.keys.pressed.R ? 20 : 1;
-		dt *= FlxG.keys.pressed.E ? 100 : 1;
+		// dt *= FlxG.keys.pressed.R ? 20 : 1;
+		// dt *= FlxG.keys.pressed.E ? 100 : 1;
 		if (!playing)
 			dt = 0;
 		time += dt;
@@ -390,49 +390,49 @@ class PlayState extends FlxState
 		var wasNight = save.data.isNighttime;
 		Clickacabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
 
-		var val = FlxG.keys.pressed.G ? 921070 : 500;
-		val *= FlxG.keys.pressed.T ? 100 : 1;
-		var sign = FlxG.keys.pressed.F ? -1 : 1;
-		b = b + (val * sign);
-		if (FlxG.keys.pressed.Y) {
-			b *= 2;
-		} else if (FlxG.keys.pressed.U) {
-			b /= 2;
-		}
-		if (FlxG.keys.pressed.W) {
-			save.data.P++;
-			save.data.W = save.data.C = save.data.L;
-		}
+		// var val = FlxG.keys.pressed.G ? 921070 : 500;
+		// val *= FlxG.keys.pressed.T ? 100 : 1;
+		// var sign = FlxG.keys.pressed.F ? -1 : 1;
+		// b = b + (val * sign);
+		// if (FlxG.keys.pressed.Y) {
+		// 	b *= 2;
+		// } else if (FlxG.keys.pressed.U) {
+		// 	b /= 2;
+		// }
+		// if (FlxG.keys.pressed.W) {
+		// 	save.data.P++;
+		// 	save.data.W = save.data.C = save.data.L;
+		// }
 		// testText.text = "t=" + Std.int(time) + " b=" + Clickacabra.formatBigNum(b);
 
-		if (FlxG.keys.pressed.P) {
-			time = save.data.timeInDay = 20;
-			save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
-			save.data.isNighttime = !save.data.timeInDay;
-			save.data.timeToConversion = Clickacabra.CONVERSION_INTERAL;
-			save.data.L = 0.0;
-			save.data.D = 0.0;
-			save.data.F = 0.0;
-			save.data.Z = 0.0;
-			save.data.C = 0.0;
-			save.data.W = 0.0;
-			save.data.M = 0.0;
-			save.data.N = 0.0;
-			save.data.G = 0.0;
-			save.data.P = 0.0;
-			save.flush();
-			flash.system.System.exit(0);
-		}
+		// if (FlxG.keys.pressed.P) {
+		// 	time = save.data.timeInDay = 20;
+		// 	save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
+		// 	save.data.isNighttime = !save.data.timeInDay;
+		// 	save.data.timeToConversion = Clickacabra.CONVERSION_INTERAL;
+		// 	save.data.L = 0.0;
+		// 	save.data.D = 0.0;
+		// 	save.data.F = 0.0;
+		// 	save.data.Z = 0.0;
+		// 	save.data.C = 0.0;
+		// 	save.data.W = 0.0;
+		// 	save.data.M = 0.0;
+		// 	save.data.N = 0.0;
+		// 	save.data.G = 0.0;
+		// 	save.data.P = 0.0;
+		// 	save.flush();
+		// 	flash.system.System.exit(0);
+		// }
 
 		// do music fading based on daytime
 		{
-			if (save.data.isDaytime && !wasDay) {
-				dayMusic.fadeIn(1);
-				nightMusic.fadeOut(1);
-			} else if (save.data.isNighttime && !wasNight) {
-				dayMusic.fadeOut(1);
-				nightMusic.fadeIn(1);				
-			}
+			// if (save.data.isDaytime && !wasDay) {
+			// 	dayMusic.fadeIn(1);
+			// 	nightMusic.fadeOut(1);
+			// } else if (save.data.isNighttime && !wasNight) {
+			// 	dayMusic.fadeOut(1);
+			// 	nightMusic.fadeIn(1);				
+			// }
 		}
 		// do sky color interps
 		{
