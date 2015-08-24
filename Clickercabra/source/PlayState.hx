@@ -18,7 +18,9 @@ import flixel.plugin.MouseEventManager;
 class PlayState extends FlxState
 {
 	var save:FlxSave = new FlxSave();
-	var time:Float = 50;
+	var time:Float = 20;
+
+	var playing = false;
 
 	var background:FlxSprite;
 
@@ -282,6 +284,36 @@ class PlayState extends FlxState
 				add(clickables[i]);
 			}
 		}
+		// tutorial
+		{
+			if (save.data.L == 0) {
+				playing = false;
+				var tutorialGroup = new FlxGroup();
+				var tutorial = new FlxSprite(0, 0);
+				tutorial.loadGraphic("assets/images/tut.png");
+				tutorialGroup.add(tutorial);
+				var title = new FlxText(10, 0, 0, "Clickacabra", 64);
+				title.color = 0xFFFF8080;
+      	title.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 4, 1);
+				tutorialGroup.add(title);
+				var creds = new FlxText(10, 70, 0, "by @foolmoron for Ludum Dare 33", 8);
+      	creds.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 1, 1);
+				tutorialGroup.add(creds);
+				var kill = new FlxText(380, 110, 180, "Click the sky to kill people!", 16);
+      	kill.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
+				tutorialGroup.add(kill);
+				var buy = new FlxText(260, 170, 200, "Click these icons to buy things!", 16);
+      	buy.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
+				tutorialGroup.add(buy);
+				var thing = new FlxText(20, 230, 500, "Use your Chupacabra army and your clicking skills to take over the world!", 16);
+      	thing.setBorderStyle(FlxText.BORDER_OUTLINE, 0x000000, 2, 1);
+				tutorialGroup.add(thing);
+				add(tutorialGroup);
+				MouseEventManager.add(tutorial, function(downObj) { playing = true; tutorialGroup.destroy(); }, null, null, null);
+			} else {
+				playing = true;
+			}
+		}
 		// set up texts
 		// {
 		// 	tidText = new DataText<Float>(function() return save.data.timeInDay, function(val) return "timeInDay=" + val);
@@ -305,23 +337,6 @@ class PlayState extends FlxState
 		// 		add(texts[i]);
 		// 	}
 		// }
-		// set up buttons
-		{
-			dButton.button = new FlxButton(0, 0, "Dead", function() { Clickacabra.doBuy(save.data, "D"); });
-			cButton.button = new FlxButton(0, 0, "Chupacabra", function() { Clickacabra.doBuy(save.data, "C"); });
-			wButton.button = new FlxButton(0, 0, "Daywalker", function() { Clickacabra.doBuy(save.data, "W"); });
-			mButton.button = new FlxButton(0, 0, "Mother", function() { Clickacabra.doBuy(save.data, "M"); });
-			nButton.button = new FlxButton(0, 0, "Nest", function() { Clickacabra.doBuy(save.data, "N"); });
-			gButton.button = new FlxButton(0, 0, "Goat", function() { Clickacabra.doBuy(save.data, "G"); });
-			pButton.button = new FlxButton(0, 0, "Puppy", function() { Clickacabra.doBuy(save.data, "P"); });
-			buttons = [null, null, null, dButton, null, null, cButton, wButton, mButton, nButton, gButton, pButton];
-			for (i in 0...buttons.length) {
-				if (buttons[i] == null) continue;
-
-				buttons[i].button.x = 80;
-				buttons[i].button.y = i * 22 + 10;
-			}
-		}
 		// // debug grid
 		// {
 		// 	var cellSize = 10;
@@ -344,6 +359,7 @@ class PlayState extends FlxState
 		// 	add(testText);
 		// }
 
+
 		super.create();
 	}
 
@@ -357,6 +373,8 @@ class PlayState extends FlxState
 		var dt = FlxG.elapsed;
 		dt *= FlxG.keys.pressed.R ? 20 : 1;
 		dt *= FlxG.keys.pressed.E ? 100 : 1;
+		if (!playing)
+			dt = 0;
 		time += dt;
 
 		Clickacabra.idle(save.data, dt, DAY_LENGTH, NIGHT_LENGTH);
@@ -377,7 +395,7 @@ class PlayState extends FlxState
 		// testText.text = "t=" + Std.int(time) + " b=" + Clickacabra.formatBigNum(b);
 
 		if (FlxG.keys.pressed.P) {
-			time = save.data.timeInDay = 50;
+			time = save.data.timeInDay = 20;
 			save.data.isDaytime = save.data.timeInDay < DAY_LENGTH;
 			save.data.isNighttime = !save.data.timeInDay;
 			save.data.timeToConversion = Clickacabra.CONVERSION_INTERAL;
@@ -392,6 +410,7 @@ class PlayState extends FlxState
 			save.data.G = 0.0;
 			save.data.P = 0.0;
 			save.flush();
+			flash.system.System.exit(0);
 		}
 
 		// do sky color interps
@@ -409,18 +428,6 @@ class PlayState extends FlxState
 			else if (secondColor == 0xFF6137A1) darknessLerp = interColorLerp; // entering darkness
 			else if (firstColor == 0xFF6137A1) darknessLerp = 1 - interColorLerp; // exiting darkness
 			skyDarkening.makeGraphic(FlxG.width, SKY_HEIGHT, FlxColorUtil.makeFromARGB(darknessLerp * 0.3, 0x00, 0x00, 0x00));
-		}
-		// toggle buttons based on availability
-		{
-			for (i in 0...0){//buttons.length) {
-				if (buttons[i] == null) continue;
-
-				if (Clickacabra.canBuy(save.data, buttons[i].prop)) {
-					add(buttons[i].button);
-				} else {
-					remove(buttons[i].button);
-				}
-			}
 		}
 		// toggle item sprites based on current numbers
 		{
