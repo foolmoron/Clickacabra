@@ -149,16 +149,16 @@ class Clickacabra
 		"M"=> {
 			infoString: function(data:Dynamic) { return "The Mother spawns Chupacabras over time via osmosis or something like that."; },
 			rateString: function(data:Dynamic) { return formatBigNum(data.rateC) + " Chupacabras spawn/s"; },
-			costString: function(data:Dynamic) { return "Create a Mother with " + formatBigNum(50 * Math.pow(2, data.M)) + " Chupacabras and " + formatBigNum(1000 * Math.pow(2, data.M)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.C >= (50 * Math.pow(2, data.M)) && data.F >= (1000 * Math.pow(2, data.M)); },
-			onBuy: function(data:Dynamic) { data.C -= (50 * Math.pow(2, data.M)); data.F -= (1000 * Math.pow(2, data.M)); data.M++; }
+			costString: function(data:Dynamic) { return "Create a Mother with " + formatBigNum(50 * Math.pow(1.75, data.M)) + " Chupacabras and " + formatBigNum(1000 * Math.pow(1.5, data.M)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.C >= (50 * Math.pow(1.75, data.M)) && data.F >= (1000 * Math.pow(1.5, data.M)); },
+			onBuy: function(data:Dynamic) { data.C -= (50 * Math.pow(1.75, data.M)); data.F -= (1000 * Math.pow(1.5, data.M)); data.M++; }
 		},
 		"N"=> {
 			infoString: function(data:Dynamic) { return "The Nest is where Chupacabras study to obtain their Daywalking degree."; },
 			rateString: function(data:Dynamic) { return formatBigNum(data.rateW) + " Daywalkers spawn/s"; },
-			costString: function(data:Dynamic) { return "Create a Nest with " + formatBigNum(50 * Math.pow(2, data.N)) + " Daywalkers and " + formatBigNum(1000 * Math.pow(2, data.N)) + " Flesh!"; },
-			canBuy: function(data:Dynamic) { return data.W >= (50 * Math.pow(2, data.N)) && data.F >= (1000 * Math.pow(2, data.N)); },
-			onBuy: function(data:Dynamic) { data.W -= (50 * Math.pow(2, data.N)); data.F -= (1000 * Math.pow(2, data.N)); data.N++; }
+			costString: function(data:Dynamic) { return "Create a Nest with " + formatBigNum(50 * Math.pow(1.75, data.N)) + " Daywalkers and " + formatBigNum(1000 * Math.pow(1.5, data.N)) + " Flesh!"; },
+			canBuy: function(data:Dynamic) { return data.W >= (50 * Math.pow(1.75, data.N)) && data.F >= (1000 * Math.pow(1.5, data.N)); },
+			onBuy: function(data:Dynamic) { data.W -= (50 * Math.pow(1.75, data.N)); data.F -= (1000 * Math.pow(1.5, data.N)); data.N++; }
 		},
 		"G"=> {
 			infoString: function(data:Dynamic) { return "Goat Farms make your Chupacabras excited and faster at harvesting Flesh."; },
